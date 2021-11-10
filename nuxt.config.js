@@ -1,8 +1,5 @@
-export default {
+export default {  
   // Global page headers: https://go.nuxtjs.dev/config-head
-  server: {
-    port: 3030,
-  },
   head: {
     title: 'casa-pignataro-admin',
     htmlAttrs: {
@@ -17,6 +14,14 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+  },
+
+  server: {
+    port: 3030,
+  },
+
+  router: {
+    base: '/admin/'
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
