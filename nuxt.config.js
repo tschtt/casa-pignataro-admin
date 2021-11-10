@@ -20,10 +20,6 @@ export default {
     port: 3030,
   },
 
-  router: {
-    base: '/admin/'
-  },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
