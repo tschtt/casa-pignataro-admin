@@ -1,7 +1,9 @@
 <template>
-  <Tutorial/>
+  <main>
+    {{ message }}
+  </main>
 </template>
 
-<script>
-export default {}
+<script setup>
+const message = 'hola mundo'
 </script>
