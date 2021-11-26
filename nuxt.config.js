@@ -45,6 +45,10 @@ export default {
     '@nuxtjs/axios',
   ],
 
+  axios: {
+    baseURL: process.env.BACKEND_URL,
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

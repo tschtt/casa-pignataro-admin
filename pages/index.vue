@@ -1,9 +1,23 @@
 <template>
   <main>
-    {{ message }}
+    {{ items }}
   </main>
 </template>
 
 <script setup>
-const message = 'hola mundo'
+import { ref, onMounted } from '@nuxtjs/composition-api'
+import { useAdmin } from '~/composition/index.js'
+
+const $admin = useAdmin()
+
+const items = ref([])
+
+const loadItems = async () => {
+  items.value = await $admin.findMany()
+}
+
+onMounted(() => {
+  loadItems()
+})
+
 </script>
