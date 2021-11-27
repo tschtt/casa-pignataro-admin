@@ -16,17 +16,29 @@
 </template>
 
 <script setup>
-import { ref, useRouter } from '@nuxtjs/composition-api'
-import { useSession } from '~/composition/index.js'
+import { ref, useRouter, useStore } from '@nuxtjs/composition-api'
 
 const $router = useRouter()
-const $session = useSession()
+const $store = useStore()
 
 const username = ref('santi')
 const password = ref('123456')
 
-const login = () => $session.login(username.value, password.value)
-  .then(() => $router.push('/'))
-  .catch(error => console.log(error))
+const login = async () => {
+  try {
+    const data = {}
+
+    data.username = username.value
+    data.password = password.value
+    
+    await $store.dispatch('session/login', data)
+
+    $router.push('/')
+    
+  } catch (error) {
+    console.log(error)    
+  }
+
+}
 
 </script>

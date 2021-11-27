@@ -5,15 +5,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from '@nuxtjs/composition-api'
-import { useAdmin } from '~/composition/index.js'
+import { ref, onMounted, useContext } from '@nuxtjs/composition-api'
 
-const $admin = useAdmin()
+const { $axios } = useContext()
 
 const items = ref([])
 
 const loadItems = async () => {
-  items.value = await $admin.findMany()
+  const result = await $axios.$get('/admins')
+  items.value = result.items
 }
 
 onMounted(() => {
