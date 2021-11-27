@@ -1,6 +1,5 @@
 <template>
   <main>
-    {{ items }}
   </main>
 </template>
 

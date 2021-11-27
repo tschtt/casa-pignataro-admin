@@ -1,0 +1,28 @@
+
+.table-container {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  resize: horizontal;
+}
+
+.table {
+  width: 100%;
+  min-width: min-content;
+  border-collapse: collapse;
+  // table-layout: fixed;
+
+  th, td {
+    padding: 10px;
+    border: solid 1px;
+    text-align: center;
+  }
+
+}
+
+.table.interactive {
+
+  td {
+    cursor: pointer;
+  }
+  
+}

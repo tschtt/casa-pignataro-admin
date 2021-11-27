@@ -25,6 +25,8 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.12.1",
     "prettier": "^2.3.2",
+    "sass": "^1.43.5",
+    "sass-loader": "^10.2.0",
     "unplugin-vue2-script-setup": "^0.6.16"
   }
 }

@@ -1,0 +1,16 @@
+
+.reel {
+  display: grid;
+  grid-auto-flow: column;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+// .reel {
+//   // width: 100%;
+//   // overflow: auto;
+//   display: flex;
+//   overflow-x: auto;
+//   scrollbar-width: thin;
+// }
