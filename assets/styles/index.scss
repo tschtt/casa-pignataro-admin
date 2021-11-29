@@ -6,20 +6,54 @@
 
 // Base styles
 
-label, input, textarea, select {
-  display: block;
+body {
+  font-family: var(--ff-content);
+  font-size: var(--text-100);
+  letter-spacing: .1em;
 }
 
-// Composition
+label, input, textarea, select {
+  display: block;
+  width: 100%;
+  max-width: 60ch;
+}
+
+input, textarea, select {
+  padding: var(--space-100);
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+form > * + label {
+  margin-top: var(--space-200)
+}
+
+h1 {
+  font-size: var(--text-300);
+}
+
+button {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  font-size: var(--text-200);
+  padding: var(--space-100) var(--space-500);
+}
 
 // Utilities
-@import './utilities/center';
-@import './utilities/cluster';
-@import './utilities/hidden';
-@import './utilities/icon';
-@import './utilities/reel';
+@import './utilities/center.scss';
+@import './utilities/cluster.scss';
+@import './utilities/hidden.scss';
+@import './utilities/icon.scss';
+@import './utilities/reel.scss';
+@import './utilities/stack.scss';
+@import './utilities/text-center.scss';
 
 // Design
+@import './design/text.scss';
+@import './design/color.scss';
 
 // Blocks
-@import './blocks/table.scss'
+@import './blocks/table.scss';
+@import './blocks/button.scss';
+@import './blocks/link.scss';

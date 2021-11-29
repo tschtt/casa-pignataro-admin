@@ -1,0 +1,61 @@
+
+h1.title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-title-1);
+  font-weight: var(--fw-bold);
+  letter-spacing: -2%;
+}
+
+h2.title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-title-2);
+  font-weight: var(--fw-bold);
+  letter-spacing: -2%;
+}
+
+h3.title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-title-3);
+  font-weight: var(--fw-bold);
+  letter-spacing: -2%;
+}
+
+.subtitle {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-subtitle);
+  font-weight: var(--fw-light);
+  letter-spacing: -2%;
+}
+
+.base {
+  font-family: var(--ff-content);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-normal);
+  letter-spacing: 1.5%;
+  line-height: 140%;
+}
+
+.bold {
+  font-family: var(--ff-content);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  letter-spacing: 1.5%;
+  line-height: 140%;
+}
+
+.small {
+  font-family: var(--ff-content);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-normal);
+  letter-spacing: 1.5%;
+  line-height: 140%;
+}
+
+.button {
+  text-transform: uppercase;
+  font-family: var(--ff-content);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  letter-spacing: 1.5%;
+  line-height: 140%;
+}
