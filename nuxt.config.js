@@ -43,6 +43,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://composition-api.nuxtjs.org/,
     '@nuxtjs/composition-api/module',
+    // https://github.com/Developmint/nuxt-purgecss
+    'nuxt-purgecss',
   ],
   
   // Modules: https://go.nuxtjs.dev/config-modules
