@@ -1,4 +1,5 @@
 
+
 :root {
   --ff-heading: 'Heebo', sans-serif;
   --ff-content: 'Tajawal', sans-serif;
@@ -25,6 +26,56 @@
   --space-700: 48px;
   --space-800: 64px;
   --space-900: 96px;
+
+  --clr-main-900: hsla(22, 89.8%, 11.6%, 1);
+  --clr-main-800: hsla(21, 91.5%, 23.1%, 1);
+  --clr-main-700: hsla(21, 91%, 34.7%, 1);
+  --clr-main-600: hsla(21, 90.7%, 46.3%, 1);
+  --clr-main-500: hsla(21, 90.7%, 57.8%, 1);
+  --clr-main-400: hsla(21, 90.7%, 66.3%, 1);
+  --clr-main-300: hsla(21, 90.7%, 74.7%, 1);
+  --clr-main-200: hsla(22, 90.7%, 83.1%, 1);
+  --clr-main-100: hsla(22, 90.7%, 91.6%, 1);
+
+  --cls-secondary-900: hsla(227, 62.7%, 14.7%, 1);
+  --cls-secondary-800: hsla(227, 62.8%, 22.2%, 1);
+  --cls-secondary-700: hsla(227, 62.7%, 29.4%, 1);
+  --cls-secondary-600: hsla(227, 62.8%, 36.9%, 1);
+  --cls-secondary-500: hsla(227, 62.7%, 44.1%, 1);
+  --cls-secondary-400: hsla(227, 62.3%, 55.3%, 1);
+  --cls-secondary-300: hsla(227, 62.6%, 66.5%, 1);
+  --cls-secondary-200: hsla(228, 63.2%, 77.6%, 1);
+  --cls-secondary-100: hsla(228, 61.4%, 88.8%, 1);
+
+  --clr-grey-900: hsla(215, 27.9%, 16.9%, 1);
+  --clr-grey-800: hsla(217, 19.1%, 26.7%, 1);
+  --clr-grey-700: hsla(215, 13.8%, 34.1%, 1);
+  --clr-grey-600: hsla(220, 8.9%, 46.1%, 1);
+  --clr-grey-500: hsla(218, 10.6%, 64.9%, 1);
+  --clr-grey-400: hsla(216, 12.2%, 83.9%, 1);
+  --clr-grey-600: hsla(220, 13%, 91%, 1);
+  --clr-grey-200: hsla(220, 14.3%, 95.9%, 1);
+  --clr-grey-100: hsla(210, 20%, 98%, 1);
+
+  --clr-success-900: hsla(82, 89.8%, 11.6%, 1);
+  --clr-success-800: hsla(81, 91.5%, 23.1%, 1);
+  --clr-success-700: hsla(81, 91%, 34.7%, 1);
+  --clr-success-600: hsla(81, 90.7%, 46.3%, 1);
+  --clr-success-500: hsla(81, 90.7%, 57.8%, 1);
+  --clr-success-400: hsla(81, 90.7%, 66.3%, 1);
+  --clr-success-300: hsla(81, 90.7%, 74.7%, 1);
+  --clr-success-200: hsla(82, 90.7%, 83.1%, 1);
+  --clr-success-100: hsla(82, 90.7%, 91.6%, 1);
+
+  --clr-error-900: hsla(4, 100%, 9.8%, 1);
+  --clr-error-800: hsla(3, 98%, 19.8%, 1);
+  --clr-error-700: hsla(4, 98.7%, 29.8%, 1);
+  --clr-error-600: hsla(3, 98%, 39.8%, 1);
+  --clr-error-500: hsla(3, 98.4%, 49.6%, 1);
+  --clr-error-400: hsla(3, 98.1%, 59.6%, 1);
+  --clr-error-300: hsla(4, 98.7%, 69.8%, 1);
+  --clr-error-200: hsla(4, 98.1%, 79.8%, 1);
+  --clr-error-100: hsla(4, 100%, 90%, 1);
 
   --shadow-1: 
     0 1px 3px hsla(221, 39%, 11%, .12), 

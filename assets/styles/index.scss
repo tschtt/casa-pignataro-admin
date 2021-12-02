@@ -26,6 +26,10 @@ form > * + label {
   margin-top: var(--space-400)
 }
 
+// Design tokens
+@import './design/text.scss';
+@import './design/color.scss';
+
 // Utilities
 @import './utilities/center.scss';
 @import './utilities/cluster.scss';
@@ -34,10 +38,6 @@ form > * + label {
 @import './utilities/reel.scss';
 @import './utilities/stack.scss';
 @import './utilities/text-center.scss';
-
-// Design
-@import './design/text.scss';
-@import './design/color.scss';
 
 // Blocks
 @import './blocks/table.scss';
