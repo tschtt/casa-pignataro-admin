@@ -25,11 +25,23 @@
   --space-700: 48px;
   --space-800: 64px;
   --space-900: 96px;
+
+  --shadow-1: 
+    0 1px 3px hsla(221, 39%, 11%, .12), 
+    0 1px 2px hsla(221, 39%, 11%, .24);
+
+  --shadow-2: 
+    0 3px 6px hsla(221, 39%, 11%, .15),   
+    0 2px 4px hsla(221, 39%, 11%, .12); 
+
+  --shadow-3: 
+    0 10px 20px hsla(221, 39%, 11%, .15), 
+    0 3px 6px hsla(221, 39%, 11%, .10);
+
+  --shadow-4: 
+    0 15px 25px hsla(221, 39%, 11%, .15), 
+    0 5px 10px hsla(221, 39%, 11%, .5);
+
+  --shadow-5: 
+    0 20px 40px hsla(221, 39%, 11%, .5);
 }
-
-// @media (min-width: 600px) {
-
-//   :root {
-//   }
-  
-// }

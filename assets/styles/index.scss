@@ -15,29 +15,15 @@ body {
 label, input, textarea, select {
   display: block;
   width: 100%;
-  max-width: 60ch;
+  margin-bottom: var(--space-100);
 }
 
 input, textarea, select {
   padding: var(--space-100);
-  border: none;
-  border-bottom: 1px solid black;
 }
 
 form > * + label {
-  margin-top: var(--space-200)
-}
-
-h1 {
-  font-size: var(--text-300);
-}
-
-button {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 20px;
-  font-size: var(--text-200);
-  padding: var(--space-100) var(--space-500);
+  margin-top: var(--space-400)
 }
 
 // Utilities
@@ -57,3 +43,4 @@ button {
 @import './blocks/table.scss';
 @import './blocks/button.scss';
 @import './blocks/link.scss';
+@import './blocks/card.scss';

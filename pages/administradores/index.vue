@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <h1>Administradores</h1>
+  <main class="stack">
+    <h1 class="title-3">Administradores</h1>
     <TableBase
       :columns="['Estado', 'Usuario', 'Email']"
       :items="items"
@@ -15,10 +15,16 @@
         <td>{{ item.email }}</td>
       </TableRow>
     </TableBase>
-    <nav>
-      <nuxt-link class="button" :to="'/administradores/0'">Nuevo</nuxt-link>
-      <nuxt-link v-if="selectedId" class="button" :to="`/administradores/${selectedId}`">Modificar</nuxt-link>
-      <button v-if="selectedId" class="button">Eliminar</button>
+    <nav class="cluster right">
+      <nuxt-link class="button" :to="'/administradores/0'">
+        Nuevo
+      </nuxt-link>
+      <nuxt-link v-if="selectedId" class="button" :to="`/administradores/${selectedId}`">
+        Modificar
+      </nuxt-link>
+      <button v-if="selectedId" class="button">
+        Eliminar
+      </button>
     </nav>
   </main>
 </template>
