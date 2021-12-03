@@ -1,1 +1,2 @@
-export { useAxios } from './_axios.js'
+export { default as useFetch } from './useFetch.js'
+export { default as useResource } from './useResource.js'
