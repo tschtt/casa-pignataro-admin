@@ -17,6 +17,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'vue/attributes-order': 'off'
+    'vue/attributes-order': 'off',
+    'prefer-const': 'off',
   }
 }
