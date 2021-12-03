@@ -1,6 +1,7 @@
 
 .card {
+  background-color: var(--clr-grey-100);
   padding: var(--space-500);
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--shadow-5);
   max-width: 60ch;
 }

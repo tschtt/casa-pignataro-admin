@@ -1,45 +1,80 @@
 <template>
   <main>
-    <h1>{{ action }} administrador</h1>
-    <form id="Form" action="">
-      <label for="InputUsuario">Usuario</label>
-      <input v-model="username" id="InputUsuario" type="text" required>
-      <label for="InputEmail">Email</label>
-      <input v-model="email" id="InputEmail" type="email" required>
+    <h1>
+      {{ action }} administrador
+    </h1>
+    <form id="FormAdmin" @submit.prevent="save">
+      <FieldText 
+        id="InputUsuario" 
+        v-model="username" 
+        label="Usuario" 
+        required   
+      />
+      <FieldText 
+        id="InputEmail" 
+        v-model="email" 
+        label="Email" 
+        required 
+        email 
+      />
     </form>
-    <nav>
-      <button form="">Guardar</button>
-      <button>Cancelar</button>
+    <nav class="cluster right">
+      <button form="FormAdmin">
+        Guardar
+      </button>
+      <button @click="cancel">
+        Cancelar
+      </button>
     </nav>
   </main>
 </template>
 
-<script setup>
+<script>
 import { computed, onMounted, ref, useRoute } from '@nuxtjs/composition-api'
 import { useAxios } from '~/composition'
 
-const $route = useRoute()
-const $axios = useAxios()
+export default {
+  setup() {
+    const $route = useRoute()
+    const $axios = useAxios()
+    
+    const username = ref('')
+    const email = ref('')
+    
+    const id = computed(() => {
+      return parseInt($route.value.params.id)
+    })
+    
+    const action = computed(() => {
+      return id.value ? 'Nuevo' : 'Modificar'
+    })
+    
+    const save = () => {
 
-const username = ref('')
-const email = ref('')
+    }
 
-const id = computed(() => {
-  return parseInt($route.value.params.id)
-})
+    const cancel = () => {
 
-const action = computed(() => {
-  return id.value ? 'Nuevo' : 'Modificar'
-})
+    }
+    
+    const loadData = async () => {
+      const result = await $axios.$get(`/admins/${id.value}`)
+      username.value = result.item.username
+      email.value = result.item.email
+    }
+    
+    onMounted(() => {
+      loadData()
+    })
 
-const loadData = async () => {
-  const result = await $axios.$get(`/admins/${id.value}`)
-  username.value = result.item.username
-  email.value = result.item.email
+    return {
+      username,
+      email,
+      action,
+      save,
+      cancel,
+    }
+  }  
 }
-
-onMounted(() => {
-  loadData()
-})
 
 </script>

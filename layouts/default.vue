@@ -6,10 +6,14 @@
     <nav>
       <ul>
         <li>
-          <nuxt-link to="/administradores">Administradores</nuxt-link>
+          <nuxt-link to="/administradores">
+            Administradores
+          </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/">Inicio</nuxt-link>          
+          <nuxt-link to="/">
+            Inicio
+          </nuxt-link>          
         </li>
       </ul>
     </nav>
@@ -29,14 +33,14 @@
     grid-column: 1 / -1;
     grid-row: 1;
     padding: var(--space-500);
-    box-shadow: var(--shadow-2);
+    box-shadow: var(--shadow-3);
   }
 
   > nav {
     grid-column: 1 / 2;
     grid-row: 2;
     padding: var(--space-500);
-    box-shadow: var(--shadow-2);
+    box-shadow: var(--shadow-3);
   }
 
   > main {

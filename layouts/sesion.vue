@@ -22,6 +22,11 @@ export default {
   height: 100%;
   padding: var(--space-300);
 
+  background-image: url('/construccion-fondo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+
   > header {
     padding: 1rem;
   }
@@ -30,12 +35,5 @@ export default {
     margin: auto;
   }
 }
-
-// .background-image {
-//   background-image: url('/construccion-fondo.jpg');
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   background-position: top;
-// }
 
 </style>

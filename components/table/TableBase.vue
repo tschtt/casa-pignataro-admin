@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-if="!items.length">
+        <tr v-if="length === 0">
           <td :colspan="columnCount">
             Sin datos
           </td>
@@ -28,9 +28,9 @@ export default {
       type: Array,
       default: () => []
     },
-    items: {
-      type: Array,
-      default: () => [],
+    length: {
+      type: Number,
+      default: 0,
     },
   },
   computed: {
@@ -41,10 +41,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-/* .column-select {
-  width: 50px;
-} */
-
-</style>
