@@ -57,6 +57,10 @@ export default {
     baseURL: process.env.BACKEND_URL,
   },
 
+  env: {
+    BACKEND_URL: process.env.BACKEND_URL,
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
