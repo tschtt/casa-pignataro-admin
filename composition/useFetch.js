@@ -2,6 +2,7 @@ import { reactive, useContext } from "@nuxtjs/composition-api"
 
 const state = reactive({
   token: null,
+  refreshCallback: null,
 })
 
 export default function useFetch() {
@@ -33,12 +34,23 @@ export default function useFetch() {
       init.body = JSON.stringify(body)
     }
 
-    let result
+    let result, data
 
     result = await fetch(url, init)
-    result = await result.json()
+    data = await result.json()
 
-    return result
+    if(!result.ok && result.status === 401 && !!state.refreshCallback) {
+      await state.refreshCallback()
+      init.headers.Authorization = state.token && `Bearer ${state.token}`
+      result = await fetch(url, init)
+      data = await result.json()
+    }
+
+    if(!result.ok) {
+      throw new RequestError({ status: result.status, message: data.message })
+    }
+    
+    return data
   }
 
   return {
@@ -60,6 +72,22 @@ export default function useFetch() {
 
     setToken: (token) => {
       state.token = token
+    },
+
+    setRefreshCallback: (callback) => {
+      state.refreshCallback = callback
+    }
+  }
+}
+
+class RequestError extends Error {
+  constructor({ status, message }) {
+    super(`${message} (${status})`)
+    this.name = 'RequestError'
+    this.status = status
+    this.message = message
+    if(Error.captureStackTrace) {
+      Error.captureStackTrace(this, RequestError)
     }
   }
 }

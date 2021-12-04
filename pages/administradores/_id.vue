@@ -6,13 +6,13 @@
     <form id="FormAdmin" @submit.prevent="save">
       <FieldText 
         id="InputUsuario" 
-        v-model="username" 
+        v-model="item.username" 
         label="Usuario" 
         required   
       />
       <FieldText 
         id="InputEmail" 
-        v-model="email" 
+        v-model="item.email" 
         label="Email" 
         required 
         email 
@@ -30,16 +30,20 @@
 </template>
 
 <script>
-import { computed, onMounted, ref, useRoute } from '@nuxtjs/composition-api'
-import { useAxios } from '~/composition'
+import { computed, onMounted, ref, useRoute, useRouter } from '@nuxtjs/composition-api'
+import { useResource, useSession, useFetch } from '~/composition'
 
 export default {
   setup() {
+    const $session = useSession()
+    const $fetch = useFetch()
+
     const $route = useRoute()
-    const $axios = useAxios()
+    const $router = useRouter()
     
-    const username = ref('')
-    const email = ref('')
+    const $admins = useResource('/admins')
+    
+    const item = ref({})
     
     const id = computed(() => {
       return parseInt($route.value.params.id)
@@ -49,27 +53,31 @@ export default {
       return id.value ? 'Nuevo' : 'Modificar'
     })
     
-    const save = () => {
-
+    const save = async () => {
+      await $admins.upsertOne(item.value)
+      $router.back()
     }
 
     const cancel = () => {
-
+      $router.back()
     }
     
-    const loadData = async () => {
-      const result = await $axios.$get(`/admins/${id.value}`)
-      username.value = result.item.username
-      email.value = result.item.email
+    const loadItem = async () => {
+      item.value = await $admins.findOne(id.value)
     }
     
-    onMounted(() => {
-      loadData()
+    onMounted(async () => {
+      try {
+        await $session.refresh()
+        $fetch.setRefreshCallback($session.refresh)
+        await loadItem()
+      } catch (error) {
+        $router.push('/sesion/iniciar')
+      }
     })
 
     return {
-      username,
-      email,
+      item,
       action,
       save,
       cancel,

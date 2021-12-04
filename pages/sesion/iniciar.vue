@@ -19,32 +19,27 @@
 </template>
 
 <script>
-import { ref, useRouter, useStore } from '@nuxtjs/composition-api'
+import { ref, useRouter } from '@nuxtjs/composition-api'
+import { useSession } from '~/composition/index.js'
 
 export default {
   layout: 'sesion',
   setup() {
     const $router = useRouter()
-    const $store = useStore()
+    const $session = useSession()
 
     const username = ref('santi')
     const password = ref('123456')
 
     const login = async () => {
-      try {
-        const data = {}
+      const data = {}
 
-        data.username = username.value
-        data.password = password.value
-        
-        await $store.dispatch('session/login', data)
+      data.username = username.value
+      data.password = password.value
 
-        $router.push('/')
-        
-      } catch (error) {
-        console.log(error)    
-      }
+      await $session.login(data)
 
+      $router.push('/')
     }
 
     return {

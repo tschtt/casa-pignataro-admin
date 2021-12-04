@@ -32,23 +32,33 @@
 </template>
 
 <script>
-import { ref, onMounted, useContext } from '@nuxtjs/composition-api'
+import { ref, onMounted, useRouter } from '@nuxtjs/composition-api'
+import { useResource, useSession, useFetch } from '~/composition/index.js'
 
 export default {
   setup() {
-    const { $axios } = useContext()
+    const $router = useRouter()
+    const $session = useSession()
+    const $fetch = useFetch()
+    
+    const $admins = useResource('/admins')
     
     const items = ref([])
     
     const selected = ref(0)
     
     const loadItems = async () => {
-      const result = await $axios.$get('/admins')
-      items.value = result.items
+      items.value =  await $admins.findMany()
     }
     
-    onMounted(() => {
-      loadItems()
+    onMounted(async () => {
+      try {
+        await $session.refresh()
+        $fetch.setRefreshCallback($session.refresh)
+        await loadItems()
+      } catch (error) {
+        $router.push('/sesion/iniciar')
+      }
     })
     
     return {
