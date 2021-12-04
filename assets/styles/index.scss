@@ -7,9 +7,9 @@
 // Base styles
 
 body {
-  font-family: var(--ff-content);
-  font-size: var(--fs-200);
-  letter-spacing: .1em;
+  font-family: var(--font-content);
+  font-size: var(--text-200);
+  letter-spacing: .1rem;
 }
 
 label, input, textarea, select {
@@ -17,9 +17,14 @@ label, input, textarea, select {
   width: 100%;
 }
 
+input, textarea, select {
+  padding-left: var(--space-100);
+}
+
 // Design tokens
 @import './design/background.scss';
 @import './design/color.scss';
+@import './design/spacing.scss';
 @import './design/text.scss';
 
 // Utilities
@@ -27,10 +32,12 @@ label, input, textarea, select {
 @import './utilities/hide.scss';
 @import './utilities/scroll.scss';
 @import './utilities/stack.scss';
+@import './utilities/center.scss';
 
 // Blocks
 @import './blocks/button.scss';
 @import './blocks/card.scss';
+@import './blocks/form.scss';
 @import './blocks/icon.scss';
 @import './blocks/link.scss';
 @import './blocks/table.scss';

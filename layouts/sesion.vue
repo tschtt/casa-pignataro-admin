@@ -1,39 +1,18 @@
 <template>
-  <div class="sesion-container">
-    <!-- <header>
-      <h1>
+  <div id="app" class="stack stack-800 bg-image padding-500">
+    <header>
+      <h1 class="flex flex-center">
         <img class="logo" src="/logo-transparent.svg" alt="Casa Pignataro" width="300">
       </h1>
-    </header> -->
+    </header>
     <nuxt />
   </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style lang="scss">
 
-.sesion-container {
-  display: grid;
+#app {
   height: 100%;
-  padding: var(--space-300);
-
-  background-image: url('/construccion-fondo.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
-
-  > header {
-    padding: 1rem;
-  }
-  
-  .logo {
-    margin: auto;
-  }
 }
 
 </style>

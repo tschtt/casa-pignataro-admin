@@ -8,14 +8,14 @@
   gap: var(--flex-gap);
 }
 
-.flex.column {
+.flex-column {
   flex-direction: column;
 }
 
-.flex.right {
+.flex-right {
   justify-content: right;
 }
 
-.flex.center {
-  justify-content: right;
+.flex-center {
+  justify-content: center;
 }

@@ -1,0 +1,12 @@
+
+.form {
+
+  > * + label {
+    margin-top: var(--space-300);
+  }
+  
+  input, select {
+    margin-top: var(--space-100);
+  }
+  
+}

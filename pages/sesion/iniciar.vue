@@ -1,17 +1,17 @@
 <template>
-  <main class="card stack">
-    <h1 class="title-2 text-center">
+  <main class="bg-grey-100 stack stack-400 padding-500">
+    <h1 class="font-heading bold text-300 text-center">
       Iniciar Sesión
     </h1>
-    <form id="LoginForm" @submit.prevent="login">
+    <form id="LoginForm" class="form" @submit.prevent="login">
       <label for="InputUsername">Usuario</label>
       <input id="InputUsername" v-model="username" type="text" />
 
       <label for="InputUsername">Contraseña</label>
       <input id="InputUsername" v-model="password" type="password">
     </form>
-    <nav class="cluster">
-      <button class="button" form="LoginForm">
+    <nav class="flex flex-center">
+      <button class="button button-main" form="LoginForm">
         Iniciar Sesión
       </button>
     </nav>
@@ -49,15 +49,4 @@ export default {
     }
   }
 }
-
 </script>
-
-<style scoped lang="scss">
-
-.card {
-  --stack-space: var(--space-500);
-  place-self: center;
-  min-width: 60ch;
-}
-
-</style>

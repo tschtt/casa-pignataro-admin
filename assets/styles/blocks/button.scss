@@ -1,5 +1,9 @@
 
 .button {
+  font-size: var(--text-100);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: .1em;
   padding: var(--space-200) var(--space-500);
   border: 1px solid var(--clr-grey-600);
 }
