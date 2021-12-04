@@ -1,4 +1,5 @@
 
 .stack > * + * {
-  margin-top: var(--stack-space, var(--space-500));
+  --stack-space: var(--space-500)
+  margin-top: var(--stack-space);
 }

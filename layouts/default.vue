@@ -23,29 +23,29 @@
 
 <style lang="scss" scoped>
 
-.default-container {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  height: 100%;
+// .default-container {
+//   display: grid;
+//   grid-template-columns: auto 1fr;
+//   grid-template-rows: auto 1fr;
+//   height: 100%;
 
-  > header {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    padding: var(--space-500);
-    box-shadow: var(--shadow-3);
-  }
+//   > header {
+//     grid-column: 1 / -1;
+//     grid-row: 1;
+//     padding: var(--space-500);
+//     box-shadow: var(--shadow-3);
+//   }
 
-  > nav {
-    grid-column: 1 / 2;
-    grid-row: 2;
-    padding: var(--space-500);
-    box-shadow: var(--shadow-3);
-  }
+//   > nav {
+//     grid-column: 1 / 2;
+//     grid-row: 2;
+//     padding: var(--space-500);
+//     box-shadow: var(--shadow-3);
+//   }
 
-  > main {
-    padding: var(--space-500);
-  }
-}
+//   > main {
+//     padding: var(--space-500);
+//   }
+// }
 
 </style>

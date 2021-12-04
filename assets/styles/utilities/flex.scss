@@ -1,0 +1,21 @@
+
+.flex {
+  --flex-gap: var(--space-300);
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--flex-gap);
+}
+
+.flex.column {
+  flex-direction: column;
+}
+
+.flex.right {
+  justify-content: right;
+}
+
+.flex.center {
+  justify-content: right;
+}

@@ -8,39 +8,29 @@
 
 body {
   font-family: var(--ff-content);
-  font-size: var(--text-100);
+  font-size: var(--fs-200);
   letter-spacing: .1em;
 }
 
 label, input, textarea, select {
   display: block;
   width: 100%;
-  margin-bottom: var(--space-100);
-}
-
-input, textarea, select {
-  padding: var(--space-100);
-}
-
-form > * + label {
-  margin-top: var(--space-400)
 }
 
 // Design tokens
-@import './design/text.scss';
+@import './design/background.scss';
 @import './design/color.scss';
+@import './design/text.scss';
 
 // Utilities
-@import './utilities/center.scss';
-@import './utilities/cluster.scss';
-@import './utilities/hidden.scss';
-@import './utilities/icon.scss';
-@import './utilities/reel.scss';
+@import './utilities/flex.scss';
+@import './utilities/hide.scss';
+@import './utilities/scroll.scss';
 @import './utilities/stack.scss';
-@import './utilities/text-center.scss';
 
 // Blocks
-@import './blocks/table.scss';
 @import './blocks/button.scss';
-@import './blocks/link.scss';
 @import './blocks/card.scss';
+@import './blocks/icon.scss';
+@import './blocks/link.scss';
+@import './blocks/table.scss';

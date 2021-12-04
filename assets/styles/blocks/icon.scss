@@ -1,0 +1,82 @@
+
+/* ----- Base styles ----- */
+
+.icon::before {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+
+}
+
+/* ----- Sizes ----- */
+
+.icon-400::before {
+  font-size: 48px;
+}
+
+.icon-300::before {
+  font-size: 36px;
+}
+
+.icon-200::before {
+  font-size: 24px;
+}
+
+.icon-100::before {
+  font-size: 18px;
+}
+
+/* ----- Modifyers ----- */
+
+.icon[disabled]::before {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.icon[dark]::before {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.icon[dark][disabled]::before {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.icon[light]::before {
+  color: rgba(255, 255, 255, 1);
+}
+
+.icon[light][disabled]::before {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ----- Icons ----- */
+
+.icon-place::before {
+  content: 'place';
+}
+
+.icon-schedule::before {
+  content: 'schedule';
+}
+
+.icon-phone::before {
+  content: 'phone';
+}
