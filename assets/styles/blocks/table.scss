@@ -1,22 +1,37 @@
 
-.table-container {
-  overflow-x: auto;
-  scrollbar-width: thin;
-  resize: horizontal;
-}
-
 .table {
   width: 100%;
   min-width: min-content;
   border-collapse: collapse;
-  // table-layout: fixed;
+  background-color: var(--clr-grey-100);
 
   th, td {
-    padding: 10px;
-    border: solid 1px;
     text-align: center;
+    padding: var(--space-300) var(--space-500);
+    border-bottom: 1px solid var(--clr-grey-400);
   }
 
+  > tbody {
+
+    tr:hover {
+      background-color: var(--clr-grey-300);
+    }
+
+    tr[selected] {
+      background-color: var(--clr-main-100);
+    }
+
+  }
+
+  .column-select {
+    border-right: 1px solid var(--clr-grey-400);
+  }
+
+  input {
+    accent-color: var(--clr-main-600);
+    cursor: pointer;
+  }
+  
 }
 
 .table.interactive {

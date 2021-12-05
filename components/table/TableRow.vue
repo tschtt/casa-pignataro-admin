@@ -1,7 +1,7 @@
 <template>
-  <tr @click="updateSelected">
-    <td>
-      <label :for="id" class="hidden">
+  <tr @click="updateSelected" :selected="value === selected">
+    <td class="column-select">
+      <label :for="id" class="hide-visually">
         Seleccionar
       </label>
       <input
@@ -41,3 +41,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+input {
+  min-width: min-content;
+}
+
+</style>

@@ -36,6 +36,8 @@
   --space-100: 4px;
 
   /* ----- Shadows ----- */
+
+  /* --- Outer --- */
   
   --shadow-500: 
     0 20px 40px hsla(221, 39%, 11%, .5);
@@ -55,6 +57,29 @@
   --shadow-100: 
     0 1px 3px hsla(221, 39%, 11%, .12), 
     0 1px 2px hsla(221, 39%, 11%, .24);
+
+  /* --- Inner --- */
+
+  --shadow-inner-500: 
+    inset 0 20px 40px hsla(221, 39%, 11%, .5);
+  
+  --shadow-inner-400: 
+    inset 0 15px 25px hsla(221, 39%, 11%, .15), 
+    inset 0 5px 10px hsla(221, 39%, 11%, .5);
+  
+  --shadow-inner-300: 
+    inset 0 10px 20px hsla(221, 39%, 11%, .15), 
+    inset 0 3px 6px hsla(221, 39%, 11%, .10);
+
+  --shadow-inner-200: 
+    inset 0 3px 6px hsla(221, 39%, 11%, .15),   
+    inset 0 2px 4px hsla(221, 39%, 11%, .12); 
+  
+  --shadow-inner-100: 
+    inset 0 1px 3px hsla(221, 39%, 11%, .12), 
+    inset 0 1px 2px hsla(221, 39%, 11%, .24);
+
+  
 
   /* ----- Colors ----- */
   

@@ -1,8 +1,8 @@
 <template>
   <main>
-    <h1>
+    <h2>
       {{ action }} administrador
-    </h1>
+    </h2>
     <form id="FormAdmin" @submit.prevent="save">
       <FieldText 
         id="InputUsuario" 
@@ -18,12 +18,12 @@
         email 
       />
     </form>
-    <nav class="cluster right">
-      <button form="FormAdmin">
-        Guardar
-      </button>
-      <button @click="cancel">
+    <nav>
+      <button class="button" @click="cancel">
         Cancelar
+      </button>
+      <button class="button" form="FormAdmin">
+        Guardar
       </button>
     </nav>
   </main>
@@ -86,3 +86,64 @@ export default {
 }
 
 </script>
+
+<style lang="scss">
+
+form {
+  > * + * {
+    margin-top: var(--space-400);
+  }
+
+  input {
+    margin-top: var(--space-200);
+    padding: var(--space-100) var(--space-300);
+    border: none;
+    // border: 1px solid var(--clr-grey-500);
+    border-radius: 10px;
+    box-shadow: var(--shadow-inner-100);
+  }
+
+  input:focus {
+    outline: 2px solid var(--clr-grey-500);
+  }
+}
+
+</style>
+
+<style lang="scss" scoped>
+
+main {
+  padding: var(--space-400);
+
+  > * + * {
+    margin-top: var(--space-300);
+  }
+
+  > h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-300);
+    padding: var(--space-200);
+    background-color: var(--clr-grey-100);
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: var(--shadow-200);
+    border-radius: 10px;
+  }
+
+  > form {
+    padding: var(--space-400) var(--space-500);
+    background-color: var(--clr-grey-100);
+    box-shadow: var(--shadow-200);
+    border-radius: 10px;
+  }
+
+  > nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    gap: var(--space-200);
+  }
+}
+
+</style>

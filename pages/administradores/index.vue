@@ -1,8 +1,8 @@
 <template>
-  <main class="stack">
-    <h1>
+  <main class="main stack">
+    <h2>
       Administradores
-    </h1>
+    </h2>
     <TableBase
       :columns="['Estado', 'Usuario', 'Email']"
       :length="items.length"
@@ -17,7 +17,7 @@
         <td>{{ item.email }}</td>
       </TableRow>
     </TableBase>
-    <nav class="cluster right">
+    <nav>
       <nuxt-link class="button" :to="'/administradores/0'">
         Nuevo
       </nuxt-link>
@@ -68,3 +68,33 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+.main {
+  padding: var(--space-400);
+
+  > * + * {
+    margin-top: var(--space-400);
+  }
+
+  > h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-300);
+    padding: var(--space-200);
+    background-color: var(--clr-grey-100);
+    text-align: center;
+    font-weight: bold;
+    box-shadow: var(--shadow-200);
+    border-radius: 10px;
+  }
+
+  > nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    gap: var(--space-200);
+  }
+}
+
+</style>

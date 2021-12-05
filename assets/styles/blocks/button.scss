@@ -4,6 +4,37 @@
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: .1em;
+  text-decoration: none;
+  
   padding: var(--space-200) var(--space-500);
-  border: 1px solid var(--clr-grey-600);
+  
+  border: none;
+  
+  background-color: var(--clr-grey-200);
+  color: var(--clr-grey-800);
+  
+  box-shadow: var(--shadow-100);
+  border-radius: 25px;
+
+  transition: box-shadow 250ms ease;
+}
+
+.button:hover,
+.button:focus {
+  outline: none;
+  box-shadow: var(--shadow-200);
+}
+
+.button:focus {
+  outline: 2px solid var(--clr-grey-500);
+}
+
+.button[dark] {
+  background-color: var(--clr-grey-800);
+  color: var(--clr-grey-200);
+}
+
+.button[dark]:hover,
+.button[dark]:focus {
+  background-color: var(--clr-grey-700);
 }
