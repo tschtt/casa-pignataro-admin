@@ -1,8 +1,8 @@
 <template>
-  <main class="center bg-grey-100 stack stack-500 padding-500">
-    <h1 class="font-heading bold text-300 text-center">
+  <main class="app-main">
+    <h2 class="font-heading bold text-300 text-center">
       Iniciar Sesión
-    </h1>
+    </h2>
     <form id="LoginForm" class="form" @submit.prevent="login">
       <label for="InputUsername">Usuario</label>
       <input id="InputUsername" v-model="username" type="text" />
@@ -11,7 +11,7 @@
       <input id="InputUsername" v-model="password" type="password">
     </form>
     <nav class="flex flex-center">
-      <button class="button button-main" form="LoginForm">
+      <button class="button" form="LoginForm" main>
         Iniciar Sesión
       </button>
     </nav>
@@ -51,10 +51,27 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
-.center {
-  max-width: 50ch;
+.app-main {
+  margin: var(--space-700) var(--space-500);
+  padding: var(--space-500);
+
+  background-color: var(--clr-grey-100);
+  border-radius: 25px;
+  box-shadow: var(--shadow-400);
+
+  > * + * {
+    margin-top: var(--space-500);
+  }
+
+  > h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-300);
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
 }
 
 </style>

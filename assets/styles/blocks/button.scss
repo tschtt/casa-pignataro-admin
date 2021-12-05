@@ -26,7 +26,16 @@
 }
 
 .button:focus {
-  outline: 2px solid var(--clr-grey-500);
+  outline: 3px solid var(--clr-grey-500);
+}
+
+.button[main] {
+  background-color: var(--clr-main-200);
+  color: var(--clr-main-800);
+}
+
+.button[main]:focus {
+  outline-color: var(--clr-main-500);
 }
 
 .button[dark] {

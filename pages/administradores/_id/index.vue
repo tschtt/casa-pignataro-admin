@@ -3,7 +3,7 @@
     <h2>
       {{ action }} administrador
     </h2>
-    <form id="FormAdmin" @submit.prevent="save">
+    <form id="FormAdmin" class="form" @submit.prevent="save">
       <FieldText 
         id="InputUsuario" 
         v-model="item.username" 
@@ -87,36 +87,14 @@ export default {
 
 </script>
 
-<style lang="scss">
-
-form {
-  > * + * {
-    margin-top: var(--space-400);
-  }
-
-  input {
-    margin-top: var(--space-200);
-    padding: var(--space-100) var(--space-300);
-    border: none;
-    // border: 1px solid var(--clr-grey-500);
-    border-radius: 10px;
-    box-shadow: var(--shadow-inner-100);
-  }
-
-  input:focus {
-    outline: 2px solid var(--clr-grey-500);
-  }
-}
-
-</style>
-
 <style lang="scss" scoped>
 
 main {
+  margin-top: var(--space-700);
   padding: var(--space-400);
 
   > * + * {
-    margin-top: var(--space-300);
+    margin-top: var(--space-500);
   }
 
   > h2 {
