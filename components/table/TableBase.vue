@@ -1,5 +1,5 @@
 <template>
-  <div class="reel">
+  <div class="scroll-x">
     <table class="table interactive">
       <thead>
         <tr>

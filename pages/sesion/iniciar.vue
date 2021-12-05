@@ -1,5 +1,5 @@
 <template>
-  <main class="bg-grey-100 stack stack-400 padding-500">
+  <main class="center bg-grey-100 stack stack-500 padding-500">
     <h1 class="font-heading bold text-300 text-center">
       Iniciar Sesión
     </h1>
@@ -50,3 +50,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.center {
+  max-width: 50ch;
+}
+
+</style>

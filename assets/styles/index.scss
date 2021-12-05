@@ -9,6 +9,7 @@
 body {
   font-family: var(--font-content);
   font-size: var(--text-200);
+  color: var(--clr-grey-900);
   letter-spacing: .1rem;
 }
 
@@ -21,9 +22,19 @@ input, textarea, select {
   padding-left: var(--space-100);
 }
 
+a {
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
 // Design tokens
 @import './design/background.scss';
 @import './design/color.scss';
+@import './design/shadow.scss';
+@import './design/shape.scss';
 @import './design/spacing.scss';
 @import './design/text.scss';
 
