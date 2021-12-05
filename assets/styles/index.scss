@@ -6,6 +6,10 @@
 
 // Base styles
 
+#app {
+  min-height: 100%;
+}
+
 body {
   font-family: var(--font-content);
   font-size: var(--text-200);

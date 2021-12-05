@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="main-container">
-    <header class="main-header shadow-300">
+  <div id="app" class="app-container">
+    <header class="app-header shadow-300">
       <button class="material-icons" @click="toggleNav">
         menu
       </button>
@@ -8,8 +8,8 @@
         <img src="/logo-transparent.svg" alt="Casa Pignataro" height="50" width="200">
       </h1>
     </header>
-    <nav class="main-nav shadow-200" :hidden="!showNav">
-      <ul class="main-nav-list">
+    <nav class="app-nav shadow-200" :hidden="!showNav">
+      <ul class="app-nav-list">
         <li>
           <button class="material-icons" @click="toggleNav" dark>
             menu
@@ -27,7 +27,9 @@
         </li>
       </ul>
     </nav>
-    <nuxt class="background-pattern" />
+    <div class="app-main">
+      <nuxt class="background-pattern" />
+    </div>
   </div>  
 </template>
 
@@ -51,15 +53,17 @@ export default {
 
 <style lang="scss" scoped>
 
-.main-container {
+.app-container {
   display: grid;
   grid-template-columns: 1fr minmax(auto, 80ch) 1fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 100px auto;
+
+  min-height: 100%;
 
   background-color: var(--clr-grey-300);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 
-  > .main-header {
+  > .app-header {
     grid-column: 1 / -1;
     grid-row: 1 / 2;
 
@@ -70,21 +74,23 @@ export default {
     z-index: 10;
   }
 
-  > .main-nav {
+  > .app-nav {
     grid-column: 1 / -1;
     grid-row: 1 / -1;
     z-index: 20;
   }
 
-  > main {
+  > .app-main {
     grid-column: 2 / 3;
     grid-row: 2 / -1;
     overflow-x: hidden;
+    min-height: 100%;
+    padding: var(--space-500);
   }
   
 }
 
-.main-header {
+.app-header {
   display: flex;
   align-items: center;
   background-color: var(--clr-main-600);
@@ -97,17 +103,17 @@ export default {
   }
 }
 
-.main-nav {
+.app-nav {
   background-color: var(--clr-main-300);
   transition: all 500ms ease-in-out;
 }
 
-.main-nav[hidden] {
+.app-nav[hidden] {
   display: block;
   transform: translateX(-100%);  
 }
 
-.main-nav-list {
+.app-nav-list {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 100px auto;

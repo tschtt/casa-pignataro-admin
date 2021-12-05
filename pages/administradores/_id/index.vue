@@ -90,8 +90,13 @@ export default {
 <style lang="scss" scoped>
 
 main {
-  margin-top: var(--space-700);
+  margin: 0 auto;
+  max-width: 50ch;
   padding: var(--space-400);
+  background-color: var(--clr-grey-100);
+  border-radius: 25px;
+  box-shadow: var(--shadow-300);
+
 
   > * + * {
     margin-top: var(--space-500);
@@ -100,20 +105,8 @@ main {
   > h2 {
     font-family: var(--font-heading);
     font-size: var(--text-300);
-    padding: var(--space-200);
-    background-color: var(--clr-grey-100);
     text-align: center;
     font-weight: bold;
-    letter-spacing: 1px;
-    box-shadow: var(--shadow-200);
-    border-radius: 10px;
-  }
-
-  > form {
-    padding: var(--space-400) var(--space-500);
-    background-color: var(--clr-grey-100);
-    box-shadow: var(--shadow-200);
-    border-radius: 10px;
   }
 
   > nav {
@@ -122,6 +115,7 @@ main {
     justify-content: right;
     gap: var(--space-200);
   }
+
 }
 
 </style>

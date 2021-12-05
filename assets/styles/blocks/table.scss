@@ -3,7 +3,11 @@
   width: 100%;
   min-width: min-content;
   border-collapse: collapse;
-  background-color: var(--clr-grey-100);
+  // background-color: var(--clr-grey-100);
+
+  th {
+    border-top: 1px solid var(--clr-grey-400);
+  }
 
   th, td {
     text-align: center;

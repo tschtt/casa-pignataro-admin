@@ -1,5 +1,5 @@
 <template>
-  <main class="main stack">
+  <main class="main">
     <h2>
       Administradores
     </h2>
@@ -72,24 +72,20 @@ export default {
 <style lang="scss" scoped>
 
 .main {
-  padding: var(--space-400);
-
-  > * + * {
-    margin-top: var(--space-400);
-  }
+  background-color: var(--clr-grey-100);
+  border-radius: 25px;
+  box-shadow: var(--shadow-300);
 
   > h2 {
+    padding: var(--space-400);
     font-family: var(--font-heading);
     font-size: var(--text-300);
-    padding: var(--space-200);
-    background-color: var(--clr-grey-100);
     text-align: center;
     font-weight: bold;
-    box-shadow: var(--shadow-200);
-    border-radius: 10px;
   }
 
   > nav {
+    padding: var(--space-400);
     display: flex;
     flex-wrap: wrap;
     justify-content: right;

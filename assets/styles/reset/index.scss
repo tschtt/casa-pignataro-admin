@@ -13,7 +13,7 @@
   padding: 0;
 }
 
-html, body, #__nuxt, #__layout, #app {
+html, body, #__nuxt, #__layout {
   height: 100vh;
   min-width: fit-content;
 }
@@ -52,7 +52,7 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
-#__nuxt, #__layout, #app {
+#__nuxt, #__layout {
   isolation: isolate;
 }
 

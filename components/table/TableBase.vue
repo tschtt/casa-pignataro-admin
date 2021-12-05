@@ -40,13 +40,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-.table-container {
-  box-shadow: var(--shadow-200);
-  border-radius: 10px;
-}
-
-</style>
-
