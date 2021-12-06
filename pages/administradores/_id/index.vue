@@ -22,7 +22,7 @@
       <button class="button" @click="cancel">
         Cancelar
       </button>
-      <button class="button" form="FormAdmin">
+      <button class="button" form="FormAdmin" success>
         Guardar
       </button>
     </nav>
@@ -31,17 +31,18 @@
 
 <script>
 import { computed, onMounted, ref, useRoute, useRouter } from '@nuxtjs/composition-api'
-import { useResource, useSession, useFetch } from '~/composition'
+import { useResource, useSession, useFetch, useHandler } from '~/composition'
 
 export default {
   setup() {
     const $session = useSession()
     const $fetch = useFetch()
-
     const $route = useRoute()
     const $router = useRouter()
-    
+
     const $admins = useResource('/admins')
+
+    const { handle } = useHandler()
     
     const item = ref({})
     
@@ -53,10 +54,10 @@ export default {
       return id.value ? 'Modificar' : 'Nuevo'
     })
     
-    const save = async () => {
+    const save = handle(async () => {
       await $admins.upsertOne(item.value)
       $router.back()
-    }
+    })
 
     const cancel = () => {
       $router.back()
@@ -92,7 +93,7 @@ export default {
 main {
   margin: 0 auto;
   max-width: 50ch;
-  padding: var(--space-400);
+  padding: var(--space-500);
   background-color: var(--clr-grey-100);
   border-radius: 25px;
   box-shadow: var(--shadow-300);
@@ -105,8 +106,8 @@ main {
   > h2 {
     font-family: var(--font-heading);
     font-size: var(--text-300);
-    text-align: center;
     font-weight: bold;
+    line-height: 1em;
   }
 
   > nav {

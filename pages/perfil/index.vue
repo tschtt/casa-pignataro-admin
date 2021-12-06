@@ -9,7 +9,7 @@
 
 <script>
 import { onMounted, useRouter } from '@nuxtjs/composition-api'
-import { useSession, useFetch } from '~/composition/index.js'
+import { useSession, useFetch, useHandler } from '~/composition/index.js'
 
 export default {
   setup() {
@@ -17,10 +17,12 @@ export default {
     const $router = useRouter()
     const $session = useSession()
     
-    const logout = async () => {
+    const { handle } = useHandler()
+    
+    const logout = handle(async () => {
       await $session.logout()
       await $router.push('/sesion/iniciar')
-    }
+    })
 
     onMounted(async () => {
       try {

@@ -23,6 +23,11 @@
           </button>
         </li>
         <li>
+          <nuxt-link to="/perfil" @click.native="toggleNav">
+            Mi Perfil
+          </nuxt-link>
+        </li>
+        <li>
           <nuxt-link to="/administradores" @click.native="toggleNav">
             Administradores
           </nuxt-link>
@@ -77,7 +82,7 @@ export default {
 
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    gap: 0;
+    gap: var(--space-300);
 
     z-index: 10;
   }

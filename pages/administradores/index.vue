@@ -31,10 +31,15 @@
       <nuxt-link class="button" :to="'/administradores/0'">
         Agregar
       </nuxt-link>
-      <nuxt-link v-if="selected" class="button" :to="`/administradores/${selected}`">
+      <nuxt-link 
+        :disabled="!selected" 
+        class="button" 
+        :event="selected ? 'click' : ''"
+        :to="`/administradores/${selected}`"
+      >
         Modificar
       </nuxt-link>
-      <button v-if="selected" class="button" @click="remove">
+      <button :disabled="!selected" class="button" @click="remove">
         Eliminar
       </button>
     </nav>
@@ -43,7 +48,7 @@
 
 <script>
 import { ref, onMounted, useRouter } from '@nuxtjs/composition-api'
-import { useResource, useSession, useFetch } from '~/composition/index.js'
+import { useResource, useSession, useFetch, useHandler } from '~/composition/index.js'
 
 export default {
   setup() {
@@ -53,23 +58,25 @@ export default {
     
     const $admins = useResource('/admins')
     
+    const { handle } = useHandler()
+
     const items = ref([])
     
     const selected = ref(0)
 
-    const toggleActive = async (item) => {
+    const toggleActive = handle(async (item) => {
       await $admins.upsertOne({ ...item, active: !item.active })
       await loadItems()
-    }
+    })
 
-    const remove = async () => {
+    const remove = handle(async () => {
       await $admins.removeOne({ id: selected.value })
       await loadItems()
-    }
+    })
     
-    const loadItems = async () => {
+    const loadItems = handle(async () => {
       items.value =  await $admins.findMany()
-    }
+    })
     
     onMounted(async () => {
       try {
@@ -99,15 +106,15 @@ export default {
   box-shadow: var(--shadow-300);
 
   > h2 {
-    padding: var(--space-400);
+    padding: var(--space-500);
     font-family: var(--font-heading);
     font-size: var(--text-300);
-    text-align: center;
     font-weight: bold;
+    line-height: 1em;
   }
 
   > nav {
-    padding: var(--space-400);
+    padding: var(--space-500);
     display: flex;
     flex-wrap: wrap;
     justify-content: right;

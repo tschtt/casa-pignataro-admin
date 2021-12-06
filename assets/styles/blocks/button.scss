@@ -18,7 +18,7 @@
   box-shadow: var(--shadow-100);
   border-radius: 25px;
 
-  transition: box-shadow 250ms ease;
+  transition: box-shadow, color 250ms ease;
 }
 
 .button:hover,
@@ -29,6 +29,23 @@
 
 .button:focus {
   outline: 3px solid var(--clr-grey-500);
+}
+
+/* ----- States ----- */
+
+.button[disabled] {
+  cursor: default;
+  color: var(--clr-grey-500);
+}
+
+.button[disabled]:focus,
+.button[disabled]:hover {
+  outline: none;
+  box-shadow: var(--shadow-100);
+}
+
+.button[disabled]:focus {
+  cursor: unset;
 }
 
 /* ----- Variants ----- */
@@ -44,8 +61,6 @@
   padding: var(--space-100) var(--space-300);
 }
 
-/* ----- Colors ----- */
-
 .button[dark] {
   background-color: var(--clr-grey-800);
   color: var(--clr-grey-200);
@@ -56,6 +71,7 @@
   background-color: var(--clr-grey-700);
 }
 
+/* ----- Colors ----- */
 
 /* --- Main --- */
 
@@ -72,7 +88,7 @@
 
 .button[success] {
   background-color: var(--clr-success-100);
-  color: var(--clr-success-800);
+  color: var(--clr-success-900);
 }
 
 .button[success]:focus {
