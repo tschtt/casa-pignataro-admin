@@ -8,11 +8,12 @@
 </template>
 
 <script>
-import { useRouter } from '@nuxtjs/composition-api'
-import { useSession } from '~/composition/index.js'
+import { onMounted, useRouter } from '@nuxtjs/composition-api'
+import { useSession, useFetch } from '~/composition/index.js'
 
 export default {
   setup() {
+    const $fetch = useFetch()
     const $router = useRouter()
     const $session = useSession()
     
@@ -20,6 +21,15 @@ export default {
       await $session.logout()
       await $router.push('/sesion/iniciar')
     }
+
+    onMounted(async () => {
+      try {
+        await $session.refresh()
+        $fetch.setRefreshCallback($session.refresh)
+      } catch (error) {
+        $router.push('/sesion/iniciar')
+      }
+    })
 
     return {
       logout,

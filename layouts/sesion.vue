@@ -5,6 +5,7 @@
         <img src="/logo-transparent.svg" alt="Casa Pignataro" height="50" width="200">
       </h1>
     </header>
+    <NotificationBase />
     <div class="app-main">
       <nuxt />
     </div>

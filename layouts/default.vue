@@ -34,6 +34,7 @@
         </li>
       </ul>
     </nav>
+    <NotificationBase />
     <div class="app-main">
       <nuxt class="background-pattern" />
     </div>
