@@ -1,17 +1,24 @@
 <template>
   <div id="app" class="app-container">
     <header class="app-header shadow-300">
-      <button class="material-icons" @click="toggleNav">
+      <button class="header-button material-icons" @click="toggleNav">
         menu
       </button>
       <h1>
-        <img src="/logo-transparent.svg" alt="Casa Pignataro" height="50" width="200">
+        <nuxt-link to="/">
+          <img src="/logo-transparent.svg" alt="Casa Pignataro" height="50" width="200">
+        </nuxt-link>
       </h1>
+      <nav>
+        <nuxt-link class="header-button material-icons" to="/perfil" @click="toggleNav">
+          account_circle
+        </nuxt-link>
+      </nav>
     </header>
     <nav class="app-nav shadow-200" :hidden="!showNav">
       <ul class="app-nav-list">
         <li>
-          <button class="material-icons" @click="toggleNav" dark>
+          <button class="header-button material-icons" @click="toggleNav" dark>
             menu
           </button>
         </li>
@@ -101,6 +108,11 @@ export default {
     align-self: center;
     justify-self: start;
   }
+
+  > nav {
+    display: flex;
+    justify-content: right;
+  }
 }
 
 .app-nav {
@@ -153,7 +165,7 @@ export default {
 
 }
 
-button {
+.header-button {
   background-color: var(--clr-main-200);
   color: var(--clr-main-800);
   
@@ -167,29 +179,33 @@ button {
   transition: color, background-color 250ms ease;
 }
 
-button[dark] {
+.header-button[dark] {
   background-color: var(--clr-main-800);
   color: var(--clr-main-200);
 }
 
-button[dark]:hover,
-button[dark]:focus {
+.header-button[dark]:hover,
+.header-button[dark]:focus {
   background-color: var(--clr-main-200);
   color: var(--clr-main-800);
 }
 
-button[dark]:focus {
+.header-button[dark]:focus {
 outline: 2px solid var(--clr-main-800);
 }
 
-button:hover,
-button:focus {
+.header-button:hover,
+.header-button:focus {
   background-color: var(--clr-main-800);
   color: var(--clr-main-200);
 }
 
-button:focus {
+.header-button:focus {
   outline: 2px solid var(--clr-main-200);
+}
+
+a {
+  text-decoration: none;
 }
 
 </style>

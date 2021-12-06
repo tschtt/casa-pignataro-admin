@@ -21,7 +21,7 @@ export default function useSession () {
   }
   
   const logout = async () => {
-    await $fetch.delete('/session')
+    await $fetch.del('/session')
     
     state.admin = null
     state.token = null
