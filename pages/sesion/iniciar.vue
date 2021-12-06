@@ -5,10 +5,10 @@
     </h2>
     <form id="LoginForm" class="form" @submit.prevent="login">
       <label for="InputUsername">Usuario</label>
-      <input id="InputUsername" v-model="username" type="text" />
+      <input id="InputUsername" v-model="username" type="text" required />
 
       <label for="InputUsername">Contraseña</label>
-      <input id="InputUsername" v-model="password" type="password">
+      <input id="InputUsername" v-model="password" type="password" required />
     </form>
     <nav class="flex flex-center">
       <button class="button" form="LoginForm" main>
