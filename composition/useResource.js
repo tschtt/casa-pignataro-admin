@@ -31,8 +31,8 @@ export default function useResource(route) {
     removeMany: (query = {}) => {
       return del(route, { query })
     },
-    removeOne: (query = {}) => {
-      return del(route, { query })
+    removeOne: ({ id, ...query } = {}) => {
+      return del(`${route}/${id}`, { query })
     },
   }
 }

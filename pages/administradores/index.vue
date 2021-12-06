@@ -12,19 +12,29 @@
         :value="item.id"
         :selected.sync="selected"
       >
-        <td>{{ item.activo ? 'Activo' : 'Inactivo' }}</td>
+        <td>
+          <button 
+            class="button" 
+            :success="!!item.active"
+            :error="!item.active"
+            small
+            @click.stop="toggleActive(item)"
+          >
+            {{ item.active ? 'Activo' : 'Inactivo' }}
+          </button>
+        </td>
         <td>{{ item.username }}</td>
         <td>{{ item.email }}</td>
       </TableRow>
     </TableBase>
     <nav>
       <nuxt-link class="button" :to="'/administradores/0'">
-        Nuevo
+        Agregar
       </nuxt-link>
       <nuxt-link v-if="selected" class="button" :to="`/administradores/${selected}`">
         Modificar
       </nuxt-link>
-      <button v-if="selected" class="button">
+      <button v-if="selected" class="button" @click="remove">
         Eliminar
       </button>
     </nav>
@@ -46,6 +56,16 @@ export default {
     const items = ref([])
     
     const selected = ref(0)
+
+    const toggleActive = async (item) => {
+      await $admins.upsertOne({ ...item, active: !item.active })
+      await loadItems()
+    }
+
+    const remove = async () => {
+      await $admins.removeOne({ id: selected.value })
+      await loadItems()
+    }
     
     const loadItems = async () => {
       items.value =  await $admins.findMany()
@@ -64,6 +84,8 @@ export default {
     return {
       items,
       selected,
+      toggleActive,
+      remove,
     }
   }
 }

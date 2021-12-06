@@ -1,4 +1,6 @@
 
+/* ----- Base styles ----- */
+
 .button {
   font-size: var(--text-100);
   font-weight: var(--weight-bold);
@@ -29,14 +31,20 @@
   outline: 3px solid var(--clr-grey-500);
 }
 
-.button[main] {
-  background-color: var(--clr-main-200);
-  color: var(--clr-main-800);
+/* ----- Variants ----- */
+
+.button[small] {
+  text-transform: none;
+  padding: var(--space-100) var(--space-300);
 }
 
-.button[main]:focus {
-  outline-color: var(--clr-main-500);
+.button[small]:focus {
+  text-transform: none;
+  outline-width: 1px;
+  padding: var(--space-100) var(--space-300);
 }
+
+/* ----- Colors ----- */
 
 .button[dark] {
   background-color: var(--clr-grey-800);
@@ -46,4 +54,38 @@
 .button[dark]:hover,
 .button[dark]:focus {
   background-color: var(--clr-grey-700);
+}
+
+
+/* --- Main --- */
+
+.button[main] {
+  background-color: var(--clr-main-200);
+  color: var(--clr-main-800);
+}
+
+.button[main]:focus {
+  outline-color: var(--clr-main-500);
+}
+
+/* --- Success --- */
+
+.button[success] {
+  background-color: var(--clr-success-100);
+  color: var(--clr-success-800);
+}
+
+.button[success]:focus {
+  outline-color: var(--clr-success-500);
+}
+
+/* --- Error --- */
+
+.button[error] {
+  background-color: var(--clr-error-100);
+  color: var(--clr-error-800);
+}
+
+.button[error]:focus {
+  outline-color: var(--clr-error-300);
 }

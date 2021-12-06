@@ -45,7 +45,7 @@ export default {
 <style lang="scss" scoped>
 
 input {
-  min-width: min-content;
+  width: max-content;
 }
 
 </style>

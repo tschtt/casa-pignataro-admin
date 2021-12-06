@@ -1,7 +1,7 @@
 <template>
   <main>
     <h2>
-      {{ action }} administrador
+      {{ action }}
     </h2>
     <form id="FormAdmin" class="form" @submit.prevent="save">
       <FieldText 
@@ -50,7 +50,7 @@ export default {
     })
     
     const action = computed(() => {
-      return id.value ? 'Nuevo' : 'Modificar'
+      return id.value ? 'Modificar' : 'Nuevo'
     })
     
     const save = async () => {
