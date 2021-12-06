@@ -30,8 +30,8 @@ export default {
     
     const { handle } = useHandler()
 
-    const username = ref('santi')
-    const password = ref('123456')
+    const username = ref('')
+    const password = ref('')
 
     const login = handle(async () => {
       const data = {}
