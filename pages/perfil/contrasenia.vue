@@ -1,5 +1,5 @@
 <template>
-  <main class="card center stack stack-500" narrow>
+  <main class="card card-narrow center" narrow>
     <h2 class="title text-center">
       Reinicar Contraseña
     </h2>
@@ -7,7 +7,7 @@
       <label for="InputPassword">Contraseña</label>
       <input id="InputPassword" type="password" v-model="password">
     </form>
-    <nav class="flex flex-center">
+    <nav class="flex justify-center">
       <button class="button" form="MainForm" main>
         Reiniciar Contraseña
       </button>
@@ -36,7 +36,7 @@ export default {
         }
       })
 
-      await $notification.insert({ text: 'Contraseña actualizada!' })
+      await $notification.insert({ message: 'Contraseña actualizada!' })
 
       await $router.push('/')
     }

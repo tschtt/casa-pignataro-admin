@@ -1,6 +1,6 @@
 <template>
-  <main class="app-main">
-    <h2 class="font-heading bold text-300 text-center">
+  <main class="card stack stack-600">
+    <h2 class="title text-center">
       Iniciar Sesión
     </h2>
     <form id="LoginForm" class="form" @submit.prevent="login">
@@ -10,7 +10,7 @@
       <label for="InputUsername">Contraseña</label>
       <input id="InputUsername" v-model="password" type="password" required />
     </form>
-    <nav class="flex flex-center">
+    <nav class="flex justify-center">
       <button class="button" form="LoginForm" main>
         Iniciar Sesión
       </button>
@@ -57,28 +57,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-.app-main {
-  margin: var(--space-700) var(--space-500);
-  padding: var(--space-500);
-
-  background-color: var(--clr-grey-100);
-  border-radius: 25px;
-  box-shadow: var(--shadow-400);
-
-  > * + * {
-    margin-top: var(--space-500);
-  }
-
-  > h2 {
-    font-family: var(--font-heading);
-    font-size: var(--text-300);
-    text-align: center;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-}
-
-</style>

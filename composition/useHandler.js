@@ -7,7 +7,7 @@ const useHandler = () => {
     try {
       return await callback(args)
     } catch (error) {
-      $notification.insert({ text: error.message })
+      $notification.insert({ message: error.message })
     }
   }
 

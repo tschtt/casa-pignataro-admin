@@ -1,7 +1,7 @@
 <template>
-  <div id="app" class="app-container">
-    <header class="app-header shadow-300">
-      <button class="header-button material-icons" @click="toggleNav">
+  <div id="app" class="app-container bg-pattern">
+    <header class="[ app-header ][ align-center ][ bg-main-600 shadow-300 ]">
+      <button class="[ header-button ][ justify-self-start ][ material-icons ]" @click="toggleNav">
         menu
       </button>
       <h1>
@@ -9,15 +9,15 @@
           <img src="/logo-transparent.svg" alt="Casa Pignataro" height="50" width="200">
         </nuxt-link>
       </h1>
-      <nav>
+      <nav class="flex justify-end">
         <nuxt-link class="header-button material-icons" to="/perfil" @click="toggleNav">
           account_circle
         </nuxt-link>
       </nav>
     </header>
-    <nav class="app-nav shadow-200" :hidden="!showNav">
+    <nav class="[ app-nav ][ title-2 clr-main-800 bg-main-300 shadow-200 ]" :hidden="!showNav">
       <ul class="app-nav-list">
-        <li>
+        <li class="flex align-center">
           <button class="header-button material-icons" @click="toggleNav" dark>
             menu
           </button>
@@ -69,12 +69,8 @@ export default {
 .app-container {
   display: grid;
   grid-template-columns: 1fr minmax(auto, 80ch) 1fr;
-  grid-template-rows: 100px auto;
-
+  grid-template-rows: 100px 1fr;
   min-height: 100%;
-
-  background-color: var(--clr-grey-300);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 
   > .app-header {
     grid-column: 1 / -1;
@@ -98,32 +94,18 @@ export default {
     grid-row: 2 / -1;
     overflow-x: hidden;
     min-height: 100%;
-    padding: var(--space-500);
+    padding: var(--space-600) var(--space-500);
   }
   
 }
 
 .app-header {
-  display: flex;
-  align-items: center;
-  background-color: var(--clr-main-600);
   padding: var(--space-300) var(--space-500);
   gap: var(--space-500);
-
-  > button {
-    align-self: center;
-    justify-self: start;
-  }
-
-  > nav {
-    display: flex;
-    justify-content: right;
-  }
 }
 
 .app-nav {
-  background-color: var(--clr-main-300);
-  transition: all 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
 }
 
 .app-nav[hidden] {
@@ -136,17 +118,8 @@ export default {
   grid-template-columns: auto;
   grid-template-rows: 100px auto;
 
-  font-family: var(--font-heading);
-  font-size: var(--text-300);
-  color: var(--clr-main-800);
-
   > :first-child {
-    font-size: var(--text-400);
-    font-weight: bold;
-    display: flex;
-    align-items: center;
     padding: var(--space-300) var(--space-500);
-    gap: var(--space-500);
   }
 
   a {
@@ -182,7 +155,9 @@ export default {
   
   box-shadow: var(--shadow-200);
   
-  transition: color, background-color 250ms ease;
+  transition: 
+    background-color 250ms ease,
+    color 250ms ease;
 }
 
 .header-button[dark] {
@@ -208,10 +183,6 @@ outline: 2px solid var(--clr-main-800);
 
 .header-button:focus {
   outline: 2px solid var(--clr-main-200);
-}
-
-a {
-  text-decoration: none;
 }
 
 </style>

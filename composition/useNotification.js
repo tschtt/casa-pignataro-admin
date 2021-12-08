@@ -1,42 +1,42 @@
 import { reactive, computed } from '@nuxtjs/composition-api'
 
 const state = reactive({
-  messages: [],
+  items: [],
   duration: 2500,
 })
 
 const useNotification = () => {
   
-  const messages = computed(() => {
-    return state.messages
+  const items = computed(() => {
+    return state.items
   })
 
   const last = computed(() => {
-    if (state.messages.length) {
-      return state.messages[state.messages.length - 1]
+    if (state.items.length) {
+      return state.items[state.items.length - 1]
     }
     return null
   })
 
   const findIndex = (id) => {
-    return state.messages.findIndex(message => message.id === id)
+    return state.items.findIndex(message => message.id === id)
   }
 
-  const insert = ({ title, text, icon = 'check' } = {}) => {
+  const insert = ({ message } = {}) => {
     const id = last.value?.id + 1 || 1
-    state.messages.push({ id, title, text, icon })
+    state.items.push({ id, message })
     setTimeout(() => remove({ id }), state.duration)
   }
 
   const remove = ({ id }) => {
     const index = findIndex(id)
     if (index !== -1) {
-      state.messages.splice(index, 1)
+      state.items.splice(index, 1)
     }
   }
 
   return {
-    messages,
+    items,
     last,
     insert,
     remove,

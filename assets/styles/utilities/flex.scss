@@ -1,21 +1,45 @@
 
+/* ----- flex ----- */
+
 .flex {
   --flex-gap: var(--space-300);
 
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: var(--flex-gap);
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
 }
 
 .flex-column {
   flex-direction: column;
 }
 
-.flex-right {
-  justify-content: right;
+/* ----- justify ----- */
+
+.justify-end {
+  justify-content: end;
 }
 
-.flex-center {
+.justify-center {
   justify-content: center;
+}
+
+/* ----- align ----- */
+
+.align-center {
+  align-items: center;
+}
+
+/* ----- justify-self ----- */
+
+.justify-self-start {
+  justify-self: start;
 }

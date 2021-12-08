@@ -28,6 +28,7 @@ input, textarea, select {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 button {
@@ -41,13 +42,15 @@ button {
 @import './design/shape.scss';
 @import './design/spacing.scss';
 @import './design/text.scss';
+@import './design/transitions.scss';
 
 // Utilities
+@import './utilities/center.scss';
 @import './utilities/flex.scss';
+@import './utilities/full-width.scss';
 @import './utilities/hide.scss';
 @import './utilities/scroll.scss';
 @import './utilities/stack.scss';
-@import './utilities/center.scss';
 
 // Blocks
 @import './blocks/button.scss';

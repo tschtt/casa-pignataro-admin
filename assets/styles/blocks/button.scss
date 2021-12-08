@@ -21,7 +21,9 @@
   box-shadow: var(--shadow-100);
   border-radius: 25px;
 
-  transition: box-shadow, color 250ms ease;
+  transition: 
+    box-shadow 250ms ease,
+    color 205ms ease;
 }
 
 .button:hover,

@@ -1,7 +1,9 @@
 <template>
-  <main class="main">
-    <h2>Mi Perfil</h2>
-    <nav class="stack stack-500">
+  <main class="[ main card ]">
+    <h2 class="title">
+      Mi Perfil
+    </h2>
+    <nav class="stack stack-300">
       <nuxt-link class="button full-width" to="/perfil/contrasenia">
         Cambiar Contraseña
       </nuxt-link>
@@ -44,28 +46,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-.main {
-  background-color: var(--clr-grey-100);
-  border-radius: 25px;
-  box-shadow: var(--shadow-300);
-  padding: var(--space-500);
-
-  > * + * {
-    margin-top: var(--space-500);
-  }
-
-  > h2 {
-    font-family: var(--font-heading);
-    font-size: var(--text-300);
-    font-weight: bold;
-  }
-}
-
-.full-width {
-  width: 100%;
-}
-
-</style>

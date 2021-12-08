@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <h2>
+    <h2 class="title">
       Administradores
     </h2>
     <TableBase
@@ -102,15 +102,11 @@ export default {
 
 .main {
   background-color: var(--clr-grey-100);
+  box-shadow: var(--shadow-400);
   border-radius: 25px;
-  box-shadow: var(--shadow-300);
 
   > h2 {
     padding: var(--space-500);
-    font-family: var(--font-heading);
-    font-size: var(--text-300);
-    font-weight: bold;
-    line-height: 1em;
   }
 
   > nav {
