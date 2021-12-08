@@ -1,5 +1,11 @@
 
 .card {
   background-color: var(--clr-grey-100);
-  box-shadow: var(--shadow-5);
+  box-shadow: var(--shadow-300);
+  padding: var(--space-500);
+  border-radius: 25px;
+}
+
+.card[narrow] {
+  max-width: 50ch;
 }

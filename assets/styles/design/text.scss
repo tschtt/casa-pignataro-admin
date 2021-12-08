@@ -1,3 +1,12 @@
+/* ----- text types ----- */
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-300);
+  font-weight: bold;
+  line-height: 1rem;
+}
+
 /* ----- font-family ----- */
 
 .font-heading {

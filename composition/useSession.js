@@ -1,18 +1,20 @@
-import { reactive } from "@nuxtjs/composition-api"
+import { reactive, computed } from "@nuxtjs/composition-api"
 import useFetch from "./useFetch.js"
 
 const state = reactive({
-  admin: null,
+  user: null,
   token: null,
 })
 
 export default function useSession () {
   const $fetch = useFetch()
 
+  const user = computed(() => state.user)
+
   const login = async ({ username, password }) => {
-    const { admin, accessToken, refreshToken } = await $fetch.post('/session', { body: { username, password } })
+    const { user, accessToken, refreshToken } = await $fetch.post('/session', { body: { username, password } })
         
-    state.admin = admin
+    state.user = user
     state.token = accessToken
     
     $fetch.setToken(accessToken)
@@ -23,7 +25,7 @@ export default function useSession () {
   const logout = async () => {
     await $fetch.del('/session')
     
-    state.admin = null
+    state.user = null
     state.token = null
     
     $fetch.setToken(false)
@@ -40,9 +42,9 @@ export default function useSession () {
     
     $fetch.setToken(token)
   
-    const { admin, accessToken, refreshToken } = await $fetch.post('/session/refresh')
+    const { user, accessToken, refreshToken } = await $fetch.post('/session/refresh')
     
-    state.admin = admin
+    state.user = user
     state.token = accessToken
     
     $fetch.setToken(accessToken)
@@ -51,6 +53,7 @@ export default function useSession () {
   }
   
   return {
+    user,
     login,
     logout,
     refresh,

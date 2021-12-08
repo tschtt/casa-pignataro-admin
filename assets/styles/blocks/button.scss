@@ -2,11 +2,14 @@
 /* ----- Base styles ----- */
 
 .button {
+  display: block;
+  
   font-size: var(--text-100);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: .1em;
   text-decoration: none;
+  text-align: center;
   
   padding: var(--space-200) var(--space-500);
   

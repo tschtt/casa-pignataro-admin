@@ -1,9 +1,14 @@
 <template>
   <main class="main">
     <h2>Mi Perfil</h2>
-    <button class="button full-width" error @click="logout">
-      Cerrar sesión
-    </button>
+    <nav class="stack stack-500">
+      <nuxt-link class="button full-width" to="/perfil/contrasenia">
+        Cambiar Contraseña
+      </nuxt-link>
+      <button class="button full-width" error @click="logout">
+        Cerrar sesión
+      </button>
+    </nav>
   </main>
 </template>
 

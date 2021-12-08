@@ -41,7 +41,12 @@ export default {
 
       await $session.login(data)
 
-      $router.push('/')        
+      if($session.user.value.passwordReset) {
+        await $router.push('/perfil/contrasenia')
+      }
+      else {
+        await $router.push('/')
+      }
     })
 
     return {
