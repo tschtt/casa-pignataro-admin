@@ -4,11 +4,10 @@
     margin-top: var(--space-400);
   }
 
-  input {
+  input, select {
     margin-top: var(--space-200);
     padding: var(--space-100) var(--space-300);
     border: none;
-    // border: 1px solid var(--clr-grey-500);
     border-radius: 10px;
     box-shadow: var(--shadow-inner-100);
   }

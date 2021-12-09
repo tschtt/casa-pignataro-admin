@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="[ app-container ][ bg-pattern ]">
+  <div id="app" class="[ app-container ][ bg-pattern ]" :theme="theme">
     <header class="[ app-header ][ bg-main-600 padding-500 shadow-200 ][ flex flex-center ]">
       <h1>
         <img 
@@ -15,6 +15,20 @@
     </div>
   </div>
 </template>
+
+<script>
+import { useConfig } from '~/composition/index.js'
+
+export default {
+  setup() {
+    const { theme } = useConfig()
+    
+    return {
+      theme,
+    }
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 

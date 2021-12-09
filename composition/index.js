@@ -1,3 +1,4 @@
+export { default as useConfig } from './useConfig.js'
 export { default as useFetch } from './useFetch.js'
 export { default as useHandler } from './useHandler.js'
 export { default as useNotification } from './useNotification.js'
