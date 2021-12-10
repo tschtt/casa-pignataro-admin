@@ -12,7 +12,14 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      { property:"og:title", name:'twitter:title', content:"Casa Pignataro | Panel de administración" },
+      { property:"og:image", name:'twitter:image', content:"https://casapignataro.com/logo.png" },
+      { property:"og:type", content:"website" },
+      { property:"og:url", content:"https://casapignataro.com" },
+      { name:"twitter:card", content:"summary_large_image" },
+      { property:"og:site_name", content:"Casa Pignataro" },
+      { name:"twitter:image:alt", content:"El logo de casa pignataro. El texto \"Casa Pignataro\" en azul con borde blanco y \"electrodomesticos\" con letra mas chica y solo en blanco. Todo sobre un fondo rojo" },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

@@ -3,7 +3,7 @@
   background-color: var(--clr-grey-100);
   box-shadow: var(--shadow-400);
   padding: var(--space-600);
-  border-radius: 25px;
+  border-radius: var(--rounded-600);
 
   > * + * {
     margin-top: var(--space-600);
