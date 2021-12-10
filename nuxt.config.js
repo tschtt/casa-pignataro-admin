@@ -14,7 +14,7 @@ export default {
       { hid: 'description', name: 'description', content: 'Sitio para administrar la página de tienda pignataro' },
       { name: 'format-detection', content: 'telephone=no' },
       { property:"og:title", content:"Casa Pignataro | Panel de administración" },
-      { property:"og:image", content:"/logo.png" },
+      { property:"og:image", content:"https://casapignataro.com/foto.jpg" },
       { property:"og:type", content:"website" },
       { property:"og:url", content:"https://casapignataro.com" },
       { property:"og:site_name", content:"Casa Pignataro" },
