@@ -4,7 +4,6 @@
   min-width: min-content;
   border-collapse: collapse;
   // background-color: var(--clr-grey-100);
-
   th {
     border-top: 1px solid var(--clr-grey-400);
   }
@@ -36,6 +35,10 @@
     cursor: pointer;
   }
   
+}
+
+.table-border {
+  border: 1px solid var(--clr-grey-400);
 }
 
 .table.interactive {

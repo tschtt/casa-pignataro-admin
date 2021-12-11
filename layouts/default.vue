@@ -38,6 +38,11 @@
           </nuxt-link>
         </li>
         <li>
+          <nuxt-link to="/categorias" @click.native="toggleNav">
+            Categorias
+          </nuxt-link>
+        </li>
+        <li>
           <nuxt-link to="/contacto" @click.native="toggleNav">
             Datos de Contacto
           </nuxt-link>
