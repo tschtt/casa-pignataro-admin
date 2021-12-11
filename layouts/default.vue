@@ -33,8 +33,8 @@
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/administradores" @click.native="toggleNav">
-            Administradores
+          <nuxt-link to="/articulos" @click.native="toggleNav">
+            Artículos
           </nuxt-link>
         </li>
         <li>
@@ -45,6 +45,11 @@
         <li>
           <nuxt-link to="/contacto" @click.native="toggleNav">
             Datos de Contacto
+          </nuxt-link>
+        </li>
+        <li>
+          <nuxt-link to="/administradores" @click.native="toggleNav">
+            Administradores
           </nuxt-link>
         </li>
         <li>

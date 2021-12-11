@@ -1,9 +1,8 @@
 
 .table {
   width: 100%;
-  min-width: min-content;
+  min-width: max-content;
   border-collapse: collapse;
-  // background-color: var(--clr-grey-100);
   th {
     border-top: 1px solid var(--clr-grey-400);
   }
@@ -22,6 +21,14 @@
 
     tr[selected] {
       background-color: var(--clr-main-100);
+    }
+
+    td[left] {
+      text-align: left;
+    }
+    
+    td[right] {
+      text-align: right;
     }
 
   }

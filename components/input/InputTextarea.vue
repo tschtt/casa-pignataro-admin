@@ -3,6 +3,7 @@
     :id="id"
     v-model="localValue"
     :required="required"
+    rows="8"
   />
 </template>
 

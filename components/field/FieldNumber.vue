@@ -10,6 +10,7 @@
       :id="id"
       v-model="localValue"
       :required="required"
+      :step="step"
     />
   </div>
 </template>
@@ -36,6 +37,10 @@ export default {
     hideLabel: {
       type: Boolean,
       default: false,
+    },
+    step: {
+      type: Number,
+      default: 1,
     },
   },
   computed: {

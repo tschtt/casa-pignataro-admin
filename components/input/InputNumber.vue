@@ -4,6 +4,7 @@
     v-model="localValue"
     :required="required"
     type="number"
+    :step="step"
   >
 </template>
 
@@ -21,6 +22,10 @@ export default {
     required: {
       type: Boolean,
       default: false,
+    },
+    step: {
+      type: Number,
+      default: 1,
     },
   },
   computed: {

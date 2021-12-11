@@ -6,10 +6,13 @@
     >
       {{ label }}
     </label>
-    <InputTextarea
+    <InputSelect
       :id="id"
       v-model="localValue"
       :required="required"
+      :options="options"
+      :option-value="optionValue"
+      :option-label="optionLabel"
     />
   </div>
 </template>
@@ -22,18 +25,26 @@ export default {
       required: true,
     },
     value: {
-      type: String,
-      default: '',
+      type: Number,
+      default: 0,
     },
     label: {
       type: String,
-      default: null,
+      required: true,
+    },
+    options: {
+      type: Array,
+      default: () => [],
+    },
+    optionValue: {
+      type: String,
+      default: 'id',
+    },
+    optionLabel: {
+      type: String,
+      default: 'name',
     },
     required: {
-      type: Boolean,
-      default: false,
-    },
-    hideLabel: {
       type: Boolean,
       default: false,
     },
@@ -47,6 +58,6 @@ export default {
         this.$emit('input', value)
       }
     },
-  }
+  },
 }
 </script>
