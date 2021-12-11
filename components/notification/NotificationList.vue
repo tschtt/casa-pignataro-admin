@@ -32,4 +32,5 @@ export default {
   z-index: 100000;
 }
 
+
 </style>

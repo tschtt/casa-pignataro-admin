@@ -38,13 +38,18 @@
           </nuxt-link>
         </li>
         <li>
+          <nuxt-link to="/contacto" @click.native="toggleNav">
+            Datos de Contacto
+          </nuxt-link>
+        </li>
+        <li>
           <nuxt-link to="/configuracion" @click.native="toggleNav">
             Configuración
           </nuxt-link>          
         </li>
       </ul>
     </nav>
-    <NotificationBase />
+    <NotificationList />
     <div class="app-main">
       <nuxt class="background-pattern" />
     </div>

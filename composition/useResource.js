@@ -19,8 +19,8 @@ export default function useResource(route) {
     updateMany: (query = {}, update = {}) => {
       return patch(route, { body: update, query })
     },
-    updateOne: (query = {}, update = {}) => {
-      return patch(route, { body: update, query })
+    updateOne: ({ id, ...update } = {}) => {
+      return patch(`${route}/${id}`, { body: update })
     },
     upsertMany: (items = []) => {
       return put(route, { body: items })
