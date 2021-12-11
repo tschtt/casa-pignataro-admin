@@ -48,6 +48,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    hideLabel: {
+      type: Boolean,
+      default: false,
+    }
   },
   computed: {
     localValue: {

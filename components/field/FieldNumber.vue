@@ -19,12 +19,12 @@
 export default {
   props: {
     id: {
-      type: Number,
+      type: String,
       required: true,
     },
     value: {
-      type: String,
-      default: '',
+      type: Number,
+      default: 0,
     },
     label: {
       type: String,

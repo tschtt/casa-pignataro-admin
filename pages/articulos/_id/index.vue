@@ -28,7 +28,7 @@
         v-model="item.fkCategorie" 
         :options="categories"
         option-label="full"
-        label="Valor" 
+        label="Categoría" 
         required 
       />
       <FieldTextarea
@@ -88,16 +88,20 @@ export default {
     const cancel = () => {
       $router.back();
     };
+
+    const loadCategories = async () => {
+      categories.value = await $categories.findMany()
+    }
     
     const loadItem = async () => {
-      item.value = await $articles.findOne(id.value);
-      categories.value = await $categories.findMany();
+      item.value = await $articles.findOne(id.value) || {}
     };
     
     onMounted(async () => {
       try {
         await $session.refresh();
         $fetch.setRefreshCallback($session.refresh);
+        await loadCategories();
         await loadItem();
       }
       catch (error) {

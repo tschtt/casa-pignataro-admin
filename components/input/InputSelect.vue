@@ -4,9 +4,6 @@
     v-model="localValue"
     :required="required"
   >
-    <option :value="0">
-      Seleccione una opción
-    </option>
     <option
       v-for="option in options"
       :key="option[optionLabel]"
