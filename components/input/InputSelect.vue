@@ -3,6 +3,7 @@
     :id="id"
     v-model="localValue"
     :required="required"
+    :name="name"
   >
     <option
       v-for="option in options"
@@ -24,6 +25,10 @@ export default {
     value: {
       type: Number,
       default: 0,
+    },
+    name: {
+      type: String,
+      default: '',
     },
     options: {
       type: Array,

@@ -4,6 +4,7 @@
     v-model="localValue"
     :required="required"
     :type="type"
+    :name="name"
   >
 </template>
 
@@ -17,6 +18,10 @@ export default {
     id: {
       type: String,
       required: true,
+    },
+    name: {
+      type: String,
+      default: '',
     },
     email: {
       type: Boolean,

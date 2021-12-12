@@ -3,17 +3,19 @@
     <h2>
       Artículo
     </h2>
-    <form id="MainForm" class="form" @submit.prevent="save">
+    <form id="MainForm" class="form" @submit.prevent="submit">
       <FieldText 
         id="InputCode"
         v-model="item.code"
         label="Código"
+        name="code"
         required
       />
       <FieldText 
         id="InputName" 
         v-model="item.name" 
         label="Nombre" 
+        name="name"
         required   
       />
       <FieldNumber
@@ -21,6 +23,7 @@
         v-model="item.value" 
         :step="0.01"
         label="Valor" 
+        name="value"
         required
       />
       <FieldSelect
@@ -29,13 +32,19 @@
         :options="categories"
         option-label="full"
         label="Categoría" 
+        name="fkCategorie"
         required 
       />
       <FieldTextarea
         id="InputDescription" 
         v-model="item.description" 
         label="Descripción" 
+        name="description"
       />
+      <div>
+        <label for="InputImages">Imágenes</label>
+        <input type="file" name="images" id="InputImages" accept="image/*" multiple>
+      </div>
     </form>
     <nav>
       <button class="button" @click="cancel">
@@ -64,7 +73,13 @@ export default {
     
     const { handle } = useHandler();
     
-    const item = ref({});
+    const item = ref({
+      code: 'uno',
+      name: 'dos',
+      value: 3,
+      fkCategorie: 4,
+      description: 'cinco'
+    });
     const categories = ref([]);
     
     const id = computed(() => {
@@ -75,12 +90,13 @@ export default {
       return id.value ? "Modificar" : "Nuevo";
     });
     
-    const save = handle(async () => {
+    const submit = handle(async (event) => {
+      const formData = new FormData(event.target)
       if (id.value) {
-        await $articles.updateOne(item.value);
+        await $articles.updateOne(id.value, formData);
       }
       else {
-        await $articles.insertOne(item.value);
+        await $articles.insertOne(formData);
       }
       $router.back();
     });
@@ -113,7 +129,7 @@ export default {
       item,
       categories,
       action,
-      save,
+      submit,
       cancel,
     };
   },

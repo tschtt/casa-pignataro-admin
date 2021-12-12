@@ -23,15 +23,23 @@ export default function useFetch() {
     
     init.method = method
     
+    init.headers = {}
+    init.headers['Authorization'] = state.token && `Bearer ${state.token}`
+    
+    if(!(body instanceof FormData)) {
+      init.headers['Content-Type'] = 'application/json'
+    }
+    
+    init.headers['Accept'] = 'application/json'
     init.headers = {
-      'Authorization': state.token && `Bearer ${state.token}`,
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      ...headers
+      ...init.headers,
+      ...headers,
     }
 
     if(body) {
-      init.body = JSON.stringify(body)
+      init.body = body instanceof FormData
+        ? body
+        : JSON.stringify(body)
     }
 
     let result, data

@@ -9,6 +9,7 @@
     <InputTextarea
       :id="id"
       v-model="localValue"
+      :name="name"
       :required="required"
     />
   </div>
@@ -22,6 +23,10 @@ export default {
       required: true,
     },
     value: {
+      type: String,
+      default: '',
+    },
+    name: {
       type: String,
       default: '',
     },

@@ -67,7 +67,7 @@ export default {
     
     const save = handle(async () => {
       if(id.value) {
-        await $contact.updateOne(item.value)
+        await $contact.updateOne(id.value, item.value)
       } else {
         await $contact.insertOne(item.value)
       }

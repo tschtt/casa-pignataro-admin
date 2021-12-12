@@ -59,7 +59,7 @@ export default {
     const selected = ref(0)
 
     const toggleActive = handle(async (item) => {
-      await $categories.updateOne({ ...item, active: !item.active })
+      await $categories.updateOne(item.id, { ...item, active: !item.active })
       await loadItems()
     })
 

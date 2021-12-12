@@ -9,6 +9,7 @@
     <InputSelect
       :id="id"
       v-model="localValue"
+      :name="name"
       :required="required"
       :options="options"
       :option-value="optionValue"
@@ -27,6 +28,10 @@ export default {
     value: {
       type: Number,
       default: 0,
+    },
+    name: {
+      type: String,
+      default: '',
     },
     label: {
       type: String,

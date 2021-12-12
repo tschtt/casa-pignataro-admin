@@ -9,6 +9,7 @@
     <InputText
       :id="id"
       v-model="localValue"
+      :name="name"
       :required="required"
       :email="email"
     />
@@ -23,6 +24,10 @@ export default {
       required: true,
     },
     value: {
+      type: String,
+      default: '',
+    },
+    name: {
       type: String,
       default: '',
     },

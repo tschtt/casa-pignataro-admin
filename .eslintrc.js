@@ -18,6 +18,8 @@ module.exports = {
   // add your custom rules here
   rules: {
     'vue/attributes-order': 'off',
+    'node/no-callback-literal': 'off',
     'prefer-const': 'off',
+    'dot-notation': 'off',
   }
 }

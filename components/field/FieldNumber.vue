@@ -9,6 +9,7 @@
     <InputNumber
       :id="id"
       v-model="localValue"
+      :name="name"
       :required="required"
       :step="step"
     />
@@ -25,6 +26,10 @@ export default {
     value: {
       type: Number,
       default: 0,
+    },
+    name: {
+      type: String,
+      default: '',
     },
     label: {
       type: String,

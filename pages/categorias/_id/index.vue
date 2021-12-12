@@ -108,7 +108,7 @@ export default {
     
     const save = handle(async () => {
       if(id.value) {
-        await $categories.updateOne(item.value)
+        await $categories.updateOne(id.value, item.value)
       } else {
         await $categories.insertOne({
           ...item.value,
@@ -128,7 +128,7 @@ export default {
     }
 
     const toggleActive = handle(async (item) => {
-      await $categories.updateOne({ ...item, active: !item.active })
+      await $categories.updateOne(item.id, { ...item, active: !item.active })
       await loadItem()
     })
     
