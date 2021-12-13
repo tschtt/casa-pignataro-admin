@@ -43,9 +43,19 @@
       />
       <div>
         <label for="InputImages">Imágenes</label>
-        <input type="file" name="images" id="InputImages" accept="image/*" multiple>
+        <input type="file" name="files" id="InputImages" accept="image/*" multiple>
       </div>
     </form>
+    <div class="scroll-x">
+      <div v-for="(image, index) in item.images" :key="image">
+        <button @click="removeImage(index)">Remove</button>
+        <img 
+          :src="image" 
+          width="500" 
+          height="500"
+        />
+      </div>
+    </div>
     <nav>
       <button class="button" @click="cancel">
         Cancelar
@@ -92,6 +102,12 @@ export default {
     
     const submit = handle(async (event) => {
       const formData = new FormData(event.target)
+
+      item.value.images.forEach((image, index) => {
+        formData.append(`images[${index}]`, image)
+      })
+
+      
       if (id.value) {
         await $articles.updateOne(id.value, formData);
       }
@@ -112,6 +128,10 @@ export default {
     const loadItem = async () => {
       item.value = await $articles.findOne(id.value) || {}
     };
+
+    const removeImage = (index) => {
+      item.value.images.splice(index, 1)
+    }
     
     onMounted(async () => {
       try {
@@ -129,6 +149,7 @@ export default {
       item,
       categories,
       action,
+      removeImage,
       submit,
       cancel,
     };
