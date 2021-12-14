@@ -45,7 +45,7 @@
         label="Imágenes nuevas"
         name="files"
       />
-      <div class="stack stack-200">
+      <div v-if="item.images" class="stack stack-200">
         <p>Imágenes guardadas</p>
         <ImageReel 
           :images="item.images"
@@ -96,9 +96,11 @@ export default {
     const submit = handle(async (event) => {
       const formData = new FormData(event.target)
 
-      item.value.images.forEach((image, index) => {
-        formData.append(`images[${index}]`, image)
-      })
+      if(item.value.images) {
+        item.value.images.forEach((image, index) => {
+          formData.append(`images[${index}]`, image)
+        })
+      }
 
       
       if (id.value) {
