@@ -6,7 +6,7 @@
     >
       {{ label }}
     </label>
-    <InputFile
+    <InputImage
       :id="id"
       :name="name"
       :required="required"

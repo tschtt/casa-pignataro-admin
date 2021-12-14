@@ -63,6 +63,10 @@ button {
 @import './utilities/scroll.scss';
 @import './utilities/stack.scss';
 
+.relative {
+  position: relative;
+}
+
 // Blocks
 @import './blocks/button.scss';
 @import './blocks/card.scss';

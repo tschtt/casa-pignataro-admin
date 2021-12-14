@@ -1,5 +1,7 @@
-import { reactive, computed } from "@nuxtjs/composition-api"
+import { reactive, computed, useRouter } from "@nuxtjs/composition-api"
 import useFetch from "./useFetch.js"
+
+// Global State
 
 const state = reactive({
   user: null,
@@ -7,9 +9,17 @@ const state = reactive({
 })
 
 export default function useSession () {
+
+  // Composables
+  
   const $fetch = useFetch()
+  const $router = useRouter()
+
+  // Visible state
 
   const user = computed(() => state.user)
+
+  // Main actions
 
   const login = async ({ username, password }) => {
     const { user, accessToken, refreshToken } = await $fetch.post('/session', { body: { username, password } })
@@ -51,11 +61,28 @@ export default function useSession () {
     
     localStorage.setItem('token', refreshToken)
   }
+
+  // Helpers
+  
+  const onlyAuthed = async () => {
+    try {
+      if (!state.token) {
+        await refresh()
+        $fetch.setRefreshCallback(refresh)
+      }
+    } catch {
+      $router.push('/sesion/iniciar')
+    }
+  }
   
   return {
+    // State
     user,
+    // Actions
     login,
     logout,
     refresh,
+    // Helpers
+    onlyAuthed,
   }
 }

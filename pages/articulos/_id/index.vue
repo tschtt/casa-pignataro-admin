@@ -40,24 +40,19 @@
         label="Descripción" 
         name="description" 
       />
-      <FieldFile 
-        id="InpuImages" 
-        label="Imágenes" 
-        name="files" 
-        accept="image/*" 
-        multiple
+      <FieldImage 
+        id="InpuImages"
+        label="Imágenes nuevas"
+        name="files"
       />
-    </form>
-    <!-- <div class="scroll-x">
-      <div v-for="(image, index) in item.images" :key="image">
-        <button @click="removeImage(index)">Remove</button>
-        <img 
-          :src="image" 
-          width="500" 
-          height="500"
+      <div class="stack stack-200">
+        <p>Imágenes guardadas</p>
+        <ImageReel 
+          :images="item.images"
+          @remove="removeImage"
         />
       </div>
-    </div> -->
+    </form>
     <nav>
       <button class="button" @click="cancel">
         Cancelar
@@ -71,36 +66,32 @@
 
 <script>
 import { computed, onMounted, ref, useRoute, useRouter } from '@nuxtjs/composition-api'
-import { useResource, useSession, useFetch, useHandler } from '~/composition'
+import { useResource, useSession, useHandler } from '~/composition'
 
 export default {
   setup() {
-    const $session = useSession();
-    const $fetch = useFetch();
-    const $route = useRoute();
-    const $router = useRouter();
     
-    const $articles = useResource("/articles");
+    // Composables
+
+    const $session = useSession()
+    const $route = useRoute()
+    const $router = useRouter()
+    
+    const $articles = useResource("/articles")
     const $categories = useResource('/categories?flat')
     
-    const { handle } = useHandler();
+    const { handle } = useHandler()
+
+    // Data
     
-    const item = ref({
-      code: 'uno',
-      name: 'dos',
-      value: 3,
-      fkCategorie: 4,
-      description: 'cinco'
-    });
-    const categories = ref([]);
+    const item = ref({})
+    const categories = ref([])
+
+    // Computed
     
-    const id = computed(() => {
-      return parseInt($route.value.params.id);
-    });
+    const id = computed(() => parseInt($route.value.params.id))
     
-    const action = computed(() => {
-      return id.value ? "Modificar" : "Nuevo";
-    });
+    // Actions
     
     const submit = handle(async (event) => {
       const formData = new FormData(event.target)
@@ -111,17 +102,23 @@ export default {
 
       
       if (id.value) {
-        await $articles.updateOne(id.value, formData);
+        await $articles.updateOne(id.value, formData)
       }
       else {
-        await $articles.insertOne(formData);
+        await $articles.insertOne(formData)
       }
-      $router.back();
-    });
+      $router.back()
+    })
     
     const cancel = () => {
-      $router.back();
-    };
+      $router.back()
+    }
+
+    const removeImage = (index) => {
+      item.value.images.splice(index, 1)
+    }
+
+    // Data Loading    
 
     const loadCategories = async () => {
       categories.value = await $categories.findMany()
@@ -129,32 +126,23 @@ export default {
     
     const loadItem = async () => {
       item.value = await $articles.findOne(id.value) || {}
-    };
-
-    const removeImage = (index) => {
-      item.value.images.splice(index, 1)
     }
+
+    // Lifecycle
     
     onMounted(async () => {
-      try {
-        await $session.refresh();
-        $fetch.setRefreshCallback($session.refresh);
-        await loadCategories();
-        await loadItem();
-      }
-      catch (error) {
-        $router.push("/sesion/iniciar");
-      }
-    });
+      await $session.onlyAuthed()
+      await loadCategories()
+      await loadItem()
+    })
     
     return {
       item,
       categories,
-      action,
       removeImage,
       submit,
       cancel,
-    };
+    }
   },
 }
 
