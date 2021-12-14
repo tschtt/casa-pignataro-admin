@@ -5,48 +5,50 @@
     </h2>
     <form id="MainForm" class="form" @submit.prevent="submit">
       <FieldText 
-        id="InputCode"
-        v-model="item.code"
-        label="Código"
-        name="code"
-        required
+        id="InputCode" 
+        v-model="item.code" 
+        label="Código" 
+        name="code" 
+        required 
       />
       <FieldText 
         id="InputName" 
         v-model="item.name" 
         label="Nombre" 
-        name="name"
-        required   
-      />
-      <FieldNumber
-        id="InputValue" 
-        v-model="item.value" 
-        :step="0.01"
-        label="Valor" 
-        name="value"
-        required
-      />
-      <FieldSelect
-        id="InputCategorie" 
-        v-model="item.fkCategorie" 
-        :options="categories"
-        option-label="full"
-        label="Categoría" 
-        name="fkCategorie"
+        name="name" 
         required 
       />
-      <FieldTextarea
+      <FieldNumber 
+        id="InputValue" 
+        v-model="item.value" 
+        label="Valor" name="value" 
+        required 
+        :step="0.01" 
+      />
+      <FieldSelect 
+        id="InputCategorie" 
+        v-model="item.fkCategorie" 
+        label="Categoría" 
+        name="fkCategorie" 
+        required 
+        :options="categories" 
+        option-label="full" 
+      />
+      <FieldTextarea 
         id="InputDescription" 
         v-model="item.description" 
         label="Descripción" 
-        name="description"
+        name="description" 
       />
-      <div>
-        <label for="InputImages">Imágenes</label>
-        <input type="file" name="files" id="InputImages" accept="image/*" multiple>
-      </div>
+      <FieldFile 
+        id="InpuImages" 
+        label="Imágenes" 
+        name="files" 
+        accept="image/*" 
+        multiple
+      />
     </form>
-    <div class="scroll-x">
+    <!-- <div class="scroll-x">
       <div v-for="(image, index) in item.images" :key="image">
         <button @click="removeImage(index)">Remove</button>
         <img 
@@ -55,7 +57,7 @@
           height="500"
         />
       </div>
-    </div>
+    </div> -->
     <nav>
       <button class="button" @click="cancel">
         Cancelar
