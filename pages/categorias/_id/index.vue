@@ -78,7 +78,7 @@
 
 <script>
 import { computed, onMounted, ref, useRoute, useRouter } from '@nuxtjs/composition-api'
-import { useResource, useSession, useFetch, useHandler } from '~/composition'
+import { useResource, useSession, useHandler } from '~/composition'
 
 export default {
   key(route) {
@@ -86,7 +86,6 @@ export default {
   },
   setup() {
     const $session = useSession()
-    const $fetch = useFetch()
     const $route = useRoute()
     const $router = useRouter()
 
@@ -132,18 +131,13 @@ export default {
       await loadItem()
     })
     
-    const loadItem = async () => {
+    const loadItem = handle(async () => {
       item.value = await $categories.findOne(id.value)
-    }
+    })
     
     onMounted(async () => {
-      try {
-        await $session.refresh()
-        $fetch.setRefreshCallback($session.refresh)
-        await loadItem()
-      } catch (error) {
-        $router.push('/sesion/iniciar')
-      }
+      await $session.onlyAuthed()
+      await loadItem()
     })
 
     return {
