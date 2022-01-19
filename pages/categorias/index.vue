@@ -14,7 +14,7 @@
       >
         <td class="flex justify-center">
           <button 
-            class="button" 
+            class="button button-margin-auto"
             :success="!!item.active"
             :error="!item.active"
             small
