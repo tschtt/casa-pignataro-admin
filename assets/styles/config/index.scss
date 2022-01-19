@@ -143,3 +143,16 @@
   --clr-error-200: hsla(4, 98.1%, 79.8%, 1);
   --clr-error-100: hsla(4, 100%, 90%, 1);
 }
+
+@media (max-width: 600px) {
+
+  :root {
+    --font-content: Arial, Helvetica, sans-serif;
+    --text-500: 64px;
+    --text-400: 40px;
+    --text-300: 24px;
+    --text-200: 14px;
+    --text-100: 12px;
+  }
+  
+}
