@@ -57,6 +57,7 @@ export default {
 }
 
 .image {
+  aspect-ratio: 1;
   > img {
     height: 100%;
     object-fit: contain;

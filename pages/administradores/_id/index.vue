@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="card">
     <h2>
       {{ action }}
     </h2>

@@ -1,5 +1,5 @@
 <template>
-  <main class="main">
+  <main class="card card-table">
     <h2 class="title">
       Datos de contacto
     </h2>
@@ -14,7 +14,7 @@
       >
         <td>
           <button 
-            class="button" 
+            class="button button-margin-auto"
             :success="!!item.active"
             :error="!item.active"
             small
@@ -35,7 +35,7 @@
         </td>
       </TableRow>
     </TableBase>
-    <nav>
+    <nav class="actions">
       <nuxt-link class="button" :to="'/contacto/0'">
         Agregar
       </nuxt-link>
@@ -103,26 +103,7 @@ export default {
 
 <style lang="scss" scoped>
 
-.main {
-  background-color: var(--clr-grey-100);
-  box-shadow: var(--shadow-400);
-  border-radius: 25px;
-
-  > h2 {
-    padding: var(--space-500);
-  }
-
-  > nav {
-    padding: var(--space-500);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: right;
-    gap: var(--space-200);
-  }
-}
-
 .contact-value {
-  min-width: 50ch;
   text-align: left;
 }
 
