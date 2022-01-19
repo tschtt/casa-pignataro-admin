@@ -5,8 +5,22 @@
   padding: var(--space-600);
   border-radius: 25px;
 
+  width: 100%;
+  
   > * + * {
     margin-top: var(--space-600);
+  }
+}
+
+.card-table {
+  padding: 0;
+
+  > * {
+    margin: 0;
+  }
+
+  > *:not(.table-container) {
+    padding: var(--space-500);
   }
 }
 
@@ -16,4 +30,11 @@
 
 .card-narrow {
   max-width: 50ch;
+}
+
+@media (min-width: 600px) {
+  .card {
+    min-width: 60ch;
+
+  }
 }

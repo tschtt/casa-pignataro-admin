@@ -83,7 +83,7 @@ export default {
 
 .app-container {
   display: grid;
-  grid-template-columns: 1fr minmax(auto, 80ch) 1fr;
+  grid-template-columns: 1fr auto 1fr;
   grid-template-rows: 100px 1fr;
   min-height: 100%;
 

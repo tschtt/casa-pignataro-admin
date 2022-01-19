@@ -1,7 +1,7 @@
 <template>
-  <main class="main">
+  <main class="card card-table">
     <h2 class="title">
-      Categorías principales
+      Categorías
     </h2>
     <TableBase
       :columns="['Estado', 'Nombre']"
@@ -26,7 +26,7 @@
         <td>{{ item.name }}</td>
       </TableRow>
     </TableBase>
-    <nav>
+    <nav class="actions">
       <nuxt-link class="button" :to="'/categorias/0'">
         Agregar
       </nuxt-link>
@@ -91,25 +91,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-.main {
-  background-color: var(--clr-grey-100);
-  box-shadow: var(--shadow-400);
-  border-radius: 25px;
-
-  > h2 {
-    padding: var(--space-500);
-  }
-
-  > nav {
-    padding: var(--space-500);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: right;
-    gap: var(--space-200);
-  }
-}
-
-</style>

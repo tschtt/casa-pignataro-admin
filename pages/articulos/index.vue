@@ -1,5 +1,5 @@
 <template>
-  <main class="main">
+  <main class="card card-table">
     <h2 class="title">
       Artículos
     </h2>
@@ -29,7 +29,7 @@
         <td left>{{ findCategorie(item.fkCategorie).full }}</td>
       </TableRow>
     </TableBase>
-    <nav>
+    <nav class="actions">
       <nuxt-link class="button" :to="'/articulos/0'">
         Agregar
       </nuxt-link>
@@ -54,7 +54,7 @@ export default {
     const $fetch = useFetch()
     
     const $articles = useResource('/articles')
-    const $categories = useResource('/categories?flat')
+    const $categories = useResource('/categories?flat=true')
     
     const { handle } = useHandler()
 
@@ -107,30 +107,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-.main {
-  background-color: var(--clr-grey-100);
-  box-shadow: var(--shadow-400);
-  border-radius: 25px;
-
-  > h2 {
-    padding: var(--space-500);
-  }
-
-  > nav {
-    padding: var(--space-500);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: right;
-    gap: var(--space-200);
-  }
-}
-
-.contact-value {
-  min-width: 50ch;
-  text-align: left;
-}
-
-</style>
