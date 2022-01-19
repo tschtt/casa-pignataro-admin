@@ -78,7 +78,7 @@ export default {
     const $router = useRouter()
     
     const $articles = useResource("/articles")
-    const $categories = useResource('/categories?flat')
+    const $categories = useResource('/categories?flat=true')
     
     const { handle } = useHandler()
 
@@ -102,7 +102,6 @@ export default {
         })
       }
 
-      
       if (id.value) {
         await $articles.updateOne(id.value, formData)
       }
