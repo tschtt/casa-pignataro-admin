@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app-container bg-pattern" :theme="theme">
+  <div id="app" class="app-container bg-pattern">
     <header class="[ app-header ][ align-center ][ bg-main-600 shadow-300 ]">
       <button class="[ header-button ][ justify-self-start ][ material-icons ]" @click="toggleNav">
         menu
@@ -52,11 +52,6 @@
             Administradores
           </nuxt-link>
         </li>
-        <li>
-          <nuxt-link to="/configuracion" @click.native="toggleNav">
-            Configuración
-          </nuxt-link>          
-        </li>
       </ul>
     </nav>
     <NotificationList />
@@ -68,12 +63,8 @@
 
 <script>
 import { ref } from '@nuxtjs/composition-api'
-import { useConfig } from '~/composition/index.js'
-
 export default {
   setup() {
-    const { theme } = useConfig()
-    
     const showNav = ref(false)
 
     const toggleNav = () => {
@@ -81,7 +72,6 @@ export default {
     }
 
     return {
-      theme,
       showNav,
       toggleNav,
     }
