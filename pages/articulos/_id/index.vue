@@ -1,3 +1,4 @@
+
 <template>
   <main>
     <h2>
@@ -45,7 +46,7 @@
         label="Imágenes nuevas"
         name="files"
       />
-      <div v-if="item.images" class="stack stack-200">
+      <div v-if="item.images && item.images.length" class="stack stack-200">
         <p>Imágenes guardadas</p>
         <ImageReel 
           :images="item.images"
