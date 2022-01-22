@@ -1,35 +1,12 @@
 <template>
-  <div class="table-container">
-    <form class="search-form" @submit.prevent="search">
-      <label class="hide-visually" for="InputSearch">Buscar</label>
-      <input v-model="value" id="InputSearch" type="text" placeholder="Buscar...">
-    </form>
-    <TableBase
-      :columns="columns"
-      :length="length"
-    >
-      <slot />
-    </TableBase>
-  </div>
+  <form class="search-form" @submit.prevent="search">
+    <label class="hide-visually" for="InputSearch">Buscar</label>
+    <input v-model="value" id="InputSearch" type="text" placeholder="Buscar...">
+  </form>
 </template>
 
 <script>
-import TableBase from "./TableBase.vue";
-
 export default {
-  components: { 
-    TableBase
-  },
-  props: {
-    columns: {
-      type: Array,
-      default: () => []
-    },
-    length: {
-      type: Number,
-      default: 0,
-    },
-  },
   data() {
     return {
       value: '',

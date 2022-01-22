@@ -3,7 +3,8 @@
     <h2 class="title">
       Artículos
     </h2>
-    <TableSearch
+    <TableFull
+      :count="count"
       :columns="['Estado', 'Código', 'Nombre', 'Precio', 'Categoría']"
       :length="items.length"
     >
@@ -28,7 +29,7 @@
         <td right>{{ formatPrice(item.value) }}</td>
         <td left>{{ findCategorie(item.fkCategorie).full }}</td>
       </TableRow>
-    </TableSearch>
+    </TableFull>
     <nav class="actions">
       <nuxt-link class="button" :to="'/articulos/0'">
         Agregar
@@ -95,13 +96,18 @@ export default {
     const loadArticles = async () => {
       const query = {}
       
-      const { search } = $route.value.query
+      const { search, limit, offset } = $route.value.query
       
       if(search) {
         query.search = search
       }
+
+      query.limit = limit || 5
+      query.offset = offset || 0
+      query.orderBy = 'code'
       
       const result =  await $articles.findMany(query)
+      
       items.value =  result.items
       count.value = result.count
     }
@@ -127,6 +133,7 @@ export default {
     
     return {
       items,
+      count,
       selected,
       
       findCategorie,
