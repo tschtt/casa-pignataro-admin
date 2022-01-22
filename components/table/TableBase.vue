@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <tr v-if="length === 0">
-          <td :colspan="columnCount">
+          <td :colspan="column_count">
             Sin datos
           </td>
         </tr>
@@ -34,9 +34,9 @@ export default {
     },
   },
   computed: {
-    columnCount() {
+    column_count() {
       return this.columns.length + 1
     }
-  }
+  },
 }
 </script>

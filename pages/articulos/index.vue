@@ -3,7 +3,7 @@
     <h2 class="title">
       Artículos
     </h2>
-    <TableBase
+    <TableSearch
       :columns="['Estado', 'Código', 'Nombre', 'Precio', 'Categoría']"
       :length="items.length"
     >
@@ -28,7 +28,7 @@
         <td right>{{ formatPrice(item.value) }}</td>
         <td left>{{ findCategorie(item.fkCategorie).full }}</td>
       </TableRow>
-    </TableBase>
+    </TableSearch>
     <nav class="actions">
       <nuxt-link class="button" :to="'/articulos/0'">
         Agregar
@@ -44,12 +44,16 @@
 </template>
 
 <script>
-import { ref, onMounted, useRouter } from '@nuxtjs/composition-api'
+import { ref, onMounted, useRouter, useRoute } from '@nuxtjs/composition-api'
 import { useResource, useSession, useFetch, useHandler } from '~/composition/index.js'
 
 export default {
+  key(route) {
+    return route.fullPath
+  },
   setup() {
     const $router = useRouter()
+    const $route = useRoute()
     const $session = useSession()
     const $fetch = useFetch()
     
@@ -59,9 +63,12 @@ export default {
     const { handle } = useHandler()
 
     const items = ref([])
+    const count = ref(0)
     const categories = ref([])
     
     const selected = ref(0)
+
+    // helpers
 
     const formatPrice = (value) => {
       return `$ ${parseFloat(value).toFixed(2)}`
@@ -71,26 +78,48 @@ export default {
       return categories.value.find(item => item.id === id) || {}
     }
 
+    // actions
+
     const toggleActive = handle(async (item) => {
       await $articles.updateOne(item.id, { ...item, active: !item.active })
-      await loadItems()
+      await loadArticles()
     })
 
     const remove = handle(async () => {
       await $articles.removeOne({ id: selected.value })
-      await loadItems()
+      await loadArticles()
     })
+
+    // Search
     
-    const loadItems = handle(async () => {
-      items.value =  await $articles.findMany()
+    const loadArticles = async () => {
+      const query = {}
+      
+      const { search } = $route.value.query
+      
+      if(search) {
+        query.search = search
+      }
+      
+      const result =  await $articles.findMany(query)
+      items.value =  result.items
+      count.value = result.count
+    }
+
+    const loadCategories = async () => {
       categories.value =  await $categories.findMany()
-    })
+    }
+
+    const load = async () => {
+      await loadArticles()
+      await loadCategories()
+    }
     
     onMounted(async () => {
       try {
         await $session.refresh()
         $fetch.setRefreshCallback($session.refresh)
-        await loadItems()
+        await load()
       } catch (error) {
         $router.push('/sesion/iniciar')
       }
@@ -99,8 +128,10 @@ export default {
     return {
       items,
       selected,
+      
       findCategorie,
       formatPrice,
+      
       toggleActive,
       remove,
     }
