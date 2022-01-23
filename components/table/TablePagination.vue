@@ -1,21 +1,29 @@
 <template>
   <nav class="table-pagination">
-    <nuxt-link class="link-previous button" v-if="previous" :to="previous">
-      Anterior
-    </nuxt-link>
-    <nuxt-link class="link-next button" v-if="next" :to="next">
-      Siguiente
-    </nuxt-link>
+    <h3 class="hide-visually">
+      Paginación
+    </h3>
+    <div class="flex justify-center">
+      <button class="link-previous button" :disabled="!previous_active" @click="previous">
+        Página anterior
+      </button>
+      <span class="button">
+        {{ page }}
+      </span>
+      <button class="link-next button" :disabled="!next_active" @click="next">
+        Página siguiente
+      </button>
+    </div>
   </nav>
 </template>
 
 <script>
 export default {
   props: {
-    count: {
-      type: Number,
+    pagination: {
+      type: Object,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -23,24 +31,50 @@ export default {
     }
   },
   computed: {
-    limit() {
-      return parseInt(this.$route.query.limit) || this.step
+    
+    page() {
+      return this.pagination.page_current || 1
     },
-    offset() {
-      return parseInt(this.$route.query.offset) || 0
+    page_first() {
+      return this.pagination.page_first || 1
     },
+    page_last() {
+      return this.pagination.page_last || 1
+    },
+
+    previous_active() {
+      return this.page - 1 >= this.page_first
+    },
+    next_active() {
+      return this.page + 1 <= this.page_last
+    }
+  },
+  methods: {
+
     previous() {
-      if(this.offset > 0) {
-        return { path: '/articulos', query: { ...this.$route.query, offset: this.offset - this.step } }
+      if(this.previous_active) {
+        this.$router.replace({ 
+          path: '/articulos', 
+          query: { 
+            ...this.$route.query, 
+            page: this.page - 1 
+          } 
+        })
       }
-      return null
     },
+   
     next() {
-      if(this.offset < this.count - this.step) {
-        return { path: '/articulos', query: { ...this.$route.query, offset: this.offset + this.step } }
+      if(this.next_active) {
+        this.$router.replace({ 
+          path: '/articulos', 
+          query: { 
+            ...this.$route.query, 
+            page: this.page + 1 
+          } 
+        })
       }
-      return null
     },
+   
   }
 }
 </script>
@@ -49,9 +83,9 @@ export default {
 
 .table-pagination {
   padding: var(--space-500);
-  display: flex;
-  justify-content: center;
-  gap: var(--space-500);
+  // display: flex;
+  // justify-content: center;
+  // gap: var(--space-500);
   border: none;
   border-bottom: 1px solid var(--clr-grey-400);
 }

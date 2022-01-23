@@ -4,7 +4,7 @@
       Artículos
     </h2>
     <TableFull
-      :count="count"
+      :pagination="pagination"
       :columns="['Estado', 'Código', 'Nombre', 'Precio', 'Categoría']"
       :length="items.length"
     >
@@ -64,7 +64,8 @@ export default {
     const { handle } = useHandler()
 
     const items = ref([])
-    const count = ref(0)
+    const pagination = ref({})
+    
     const categories = ref([])
     
     const selected = ref(0)
@@ -96,20 +97,19 @@ export default {
     const loadArticles = async () => {
       const query = {}
       
-      const { search, limit, offset } = $route.value.query
+      const { search, page } = $route.value.query
       
       if(search) {
         query.search = search
       }
 
-      query.limit = limit || 5
-      query.offset = offset || 0
+      query.page = page || 0
       query.orderBy = 'code'
       
       const result =  await $articles.findMany(query)
       
       items.value =  result.items
-      count.value = result.count
+      pagination.value = result.pagination
     }
 
     const loadCategories = async () => {
@@ -133,7 +133,8 @@ export default {
     
     return {
       items,
-      count,
+      pagination,
+
       selected,
       
       findCategorie,

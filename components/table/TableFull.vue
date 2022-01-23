@@ -8,7 +8,7 @@
       <slot />
     </TableBase>
     <TablePagination 
-      :count="count"
+      :pagination="pagination"
     />
   </div>
 </template>
@@ -16,8 +16,8 @@
 <script>
 export default {
   props: {
-    count: {
-      type: Number,
+    pagination: {
+      type: Object,
       required: true,
     },
     columns: {
