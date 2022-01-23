@@ -103,6 +103,7 @@ export default {
         query.search = search
       }
 
+      query.paginated = true
       query.page = page || 0
       query.orderBy = 'code'
       
