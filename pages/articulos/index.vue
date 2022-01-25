@@ -103,8 +103,8 @@ export default {
         query.search = search
       }
 
-      query.paginated = true
-      query.page = page || 0
+      query.paginate = true
+      query.page = page || 1
       query.orderBy = 'code'
       
       const result =  await $articles.findMany(query)
