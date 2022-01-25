@@ -4,7 +4,7 @@
     v-model="localValue"
     :required="required"
     :name="name"
-    rows="8"
+    :rows="rows"
   />
 </template>
 
@@ -26,6 +26,10 @@ export default {
     required: {
       type: Boolean,
       default: false,
+    },
+    rows: {
+      type: [Number, String],
+      default: 8,
     },
   },
   computed: {

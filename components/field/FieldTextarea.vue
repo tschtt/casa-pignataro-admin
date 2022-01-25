@@ -11,6 +11,7 @@
       v-model="localValue"
       :name="name"
       :required="required"
+      :rows="rows"
     />
   </div>
 </template>
@@ -41,6 +42,10 @@ export default {
     hideLabel: {
       type: Boolean,
       default: false,
+    },
+    rows: {
+      type: [Number, String],
+      default: 8,
     },
   },
   computed: {

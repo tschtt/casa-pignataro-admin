@@ -36,6 +36,13 @@
         option-label="full" 
       />
       <FieldTextarea 
+        id="InputShortDescription" 
+        v-model="item.shortDescription" 
+        label="Descripción breve" 
+        name="shortDescription" 
+        rows="4"
+      />
+      <FieldTextarea 
         id="InputDescription" 
         v-model="item.description" 
         label="Descripción" 
