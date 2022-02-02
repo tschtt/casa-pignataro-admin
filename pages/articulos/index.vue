@@ -27,7 +27,7 @@
         <td>{{ item.code }}</td>
         <td>{{ item.name }}</td>
         <td right>{{ formatPrice(item.value) }}</td>
-        <td left>{{ findCategorie(item.fkCategorie).full }}</td>
+        <td left>{{  item.category.section + ' / ' + item.category.name }}</td>
       </TableRow>
     </TableFull>
     <nav class="actions">
@@ -59,14 +59,11 @@ export default {
     const $fetch = useFetch()
     
     const $articles = useResource('/articles')
-    const $categories = useResource('/categories?flat=true')
-    
+
     const { handle } = useHandler()
 
     const items = ref([])
     const pagination = ref({})
-    
-    const categories = ref([])
     
     const selected = ref(0)
 
@@ -74,10 +71,6 @@ export default {
 
     const formatPrice = (value) => {
       return `$ ${parseFloat(value).toFixed(2)}`
-    }
-
-    const findCategorie = (id) => {
-      return categories.value.find(item => item.id === id) || {}
     }
 
     // actions
@@ -113,13 +106,8 @@ export default {
       pagination.value = result.pagination
     }
 
-    const loadCategories = async () => {
-      categories.value =  await $categories.findMany()
-    }
-
     const load = async () => {
       await loadArticles()
-      await loadCategories()
     }
     
     onMounted(async () => {
@@ -138,7 +126,6 @@ export default {
 
       selected,
       
-      findCategorie,
       formatPrice,
       
       toggleActive,
