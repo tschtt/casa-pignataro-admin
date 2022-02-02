@@ -27,13 +27,20 @@
         :step="0.01" 
       />
       <FieldSelect 
-        id="InputCategorie" 
-        v-model="item.fkCategorie" 
-        label="Categoría" 
-        name="fkCategorie" 
+        id="InputSection" 
+        label="Sección" 
+        name="fkSection" 
+        required 
+        :options="sections" 
+        option-label="name" 
+      />
+      <FieldSelect 
+        id="InputCategory" 
+        label="Categoria" 
+        name="fkCategory" 
         required 
         :options="categories" 
-        option-label="full" 
+        option-label="name" 
       />
       <FieldTextarea 
         id="InputShortDescription" 
@@ -86,29 +93,34 @@ export default {
     const $router = useRouter()
     
     const $articles = useResource("/articles")
-    const $categories = useResource('/categories?flat=true')
+    const $sections = useResource('/sections')
     
     const { handle } = useHandler()
 
-    // Data
-    
     const item = ref({})
-    const categories = ref([])
 
-    // Computed
-    
     const id = computed(() => parseInt($route.value.params.id))
+
+    const sections = ref([])
+    
+    const section = computed(() => {
+      return sections.value?.find(section => section.id === item.value.category?.fkSection) || {}
+    })
+    
+    const categories = computed(() => {
+      return section.value.categories || []
+    })
+
+    const category = computed(() => {
+      return categories.value.find(category => category.id === item.value.fkCategory)
+    })
     
     // Actions
     
-    const submit = handle(async (event) => {
-      const formData = new FormData(event.target)
+    const submit = handle(async () => {
+      const formData = new FormData()
 
-      if(item.value.images) {
-        item.value.images.forEach((image, index) => {
-          formData.append(`images[${index}]`, image)
-        })
-      }
+      formData.append('item', JSON.stringify(item.value))
 
       if (id.value) {
         await $articles.updateOne(id.value, formData)
@@ -116,6 +128,7 @@ export default {
       else {
         await $articles.insertOne(formData)
       }
+
       $router.back()
     })
     
@@ -129,8 +142,8 @@ export default {
 
     // Data Loading    
 
-    const loadCategories = async () => {
-      categories.value = await $categories.findMany()
+    const loadSections = async () => {
+      sections.value = await $sections.findMany()
     }
     
     const loadItem = async () => {
@@ -141,13 +154,18 @@ export default {
     
     onMounted(async () => {
       await $session.onlyAuthed()
-      await loadCategories()
+      await loadSections()
       await loadItem()
     })
     
     return {
       item,
+      section,
+      category,
+      
+      sections,
       categories,
+      
       removeImage,
       submit,
       cancel,
