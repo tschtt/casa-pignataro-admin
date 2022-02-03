@@ -4,10 +4,6 @@
     <h2>
       Artículo
     </h2>
-    <div>
-      {{ article }}
-      {{ fkSection }}
-    </div>
     <form id="MainForm" class="form" @submit.prevent="submit">
       <FieldText 
         id="InputCode" 
@@ -49,6 +45,11 @@
         :options="categories" 
         option-label="name" 
       />
+      <FieldAttributes 
+        v-if="fkCategory"
+        v-model="attributes"
+        :attributes="categoryAttributes"
+      />
       <FieldTextarea 
         id="InputShortDescription" 
         v-model="shortDescription" 
@@ -87,102 +88,15 @@
 </template>
 
 <script>
-/* eslint-disable */
-import { computed, onMounted, reactive, ref, toRef, toRefs, useRoute, useRouter } from '@nuxtjs/composition-api'
-import { useResource, useSession, useHandler } from '~/composition'
+import { computed, onMounted, reactive, useRoute, useRouter } from '@nuxtjs/composition-api'
+import { useResource, useSession } from '~/composition'
+import FieldAttributes from './-FieldAttributes.vue'
 
 
 export default {
-  // ssetup() {
-    
-  //   // Composables
-
-  //   const $session = useSession()
-  //   const $route = useRoute()
-  //   const $router = useRouter()
-    
-  //   const $articles = useResource("/articles")
-  //   const $sections = useResource('/sections')
-
-  //   const state = reactive({
-  //     sections: [],
-  //     article: {
-  //       id: 0,
-  //       active: true,
-  //       code: '',
-  //       name: '',
-  //       value: '',
-  //       description: '',
-  //       shortDescription: '',
-  //       fkCategory: 0,
-  //       fkSection: 0,
-  //       images: [],
-  //       attributes: [],
-  //     },
-  //   })
-    
-  //   const { handle } = useHandler()
-
-  //   const item = ref({})
-
-  //   const id = computed(() => parseInt($route.value.params.id))
-    
-  //   // Actions
-    
-  //   const submit = handle(async () => {
-  //     const formData = new FormData()
-
-  //     formData.append('item', JSON.stringify(item.value))
-
-  //     if (id.value) {
-  //       await $articles.updateOne(id.value, formData)
-  //     }
-  //     else {
-  //       await $articles.insertOne(formData)
-  //     }
-
-  //     $router.back()
-  //   })
-    
-  //   const cancel = () => {
-  //     $router.back()
-  //   }
-
-  //   const removeImage = (index) => {
-  //     item.value.images.splice(index, 1)
-  //   }
-
-  //   // Data Loading    
-
-  //   const loadSections = async () => {
-  //     sections.value = await $sections.findMany()
-  //   }
-    
-  //   const loadItem = async () => {
-  //     item.value = await $articles.findOne(id.value) || {}
-  //   }
-
-  //   // Lifecycle
-    
-  //   onMounted(async () => {
-  //     await $session.onlyAuthed()
-  //     await loadSections()
-  //     await loadItem()
-  //   })
-    
-  //   return {
-  //     item,
-  //     section,
-  //     category,
-      
-  //     sections,
-  //     categories,
-      
-  //     removeImage,
-  //     submit,
-  //     cancel,
-  //   }
-  // },
+  components: {
+    FieldAttributes,
+  },
   setup() {
     const $session = useSession()
     const $router = useRouter()
@@ -201,7 +115,7 @@ export default {
         active: true,
         code: '',
         name: '',
-        value: '',
+        value: 0,
         description: '',
         shortDescription: '',
         fkCategory: 0,
@@ -217,13 +131,21 @@ export default {
     const sections = computed(() => {
       return state.sections || []
     })
+    
+    const section = computed(() => {
+      return state.sections.find(section => section.id === fkSection.value) || {}
+    })
 
     const categories = computed(() => {
-      if(state.fkSection === 0) {
-        return []
-      }
-      const section = state.sections.find(section => section.id === state.fkSection) || {}
-      return section.categories || []
+      return section.value.categories || []
+    })
+
+    const category = computed(() => {
+      return categories.value.find(category => category.id === state.article.fkCategory) || {}
+    })
+
+    const categoryAttributes = computed(() => {
+      return category.value.attributes || []
     })
 
     // article properties
@@ -274,6 +196,15 @@ export default {
       },
       set(value) {
         state.article.fkCategory = parseInt(value)
+      }
+    })
+
+    const attributes = computed({
+      get() {
+        return state.article.attributes
+      },
+      set(value) {
+        state.article.attributes = value
       }
     })
 
@@ -332,6 +263,9 @@ export default {
     async function loadArticle() {
       if(id !== 0) {
         state.article = await $articles.findOne(id)
+        if(state.article) {
+          state.fkSection = state.article.category.fkSection
+        }
       }
     }
 
@@ -352,12 +286,17 @@ export default {
 
       sections,
       categories,
+      categoryAttributes,
+
+      section,
+      category,
       
       code,
       name,
       value,
       fkSection,
       fkCategory,
+      attributes,
       shortDescription,
       description,
       images,
@@ -372,9 +311,10 @@ export default {
 
 <style lang="scss" scoped>
 
-main {
+
+.card {
   margin: 0 auto;
-  max-width: 50ch;
+  min-width: 70ch;
   padding: var(--space-500);
   background-color: var(--clr-grey-100);
   border-radius: 25px;

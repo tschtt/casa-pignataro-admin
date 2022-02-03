@@ -21,5 +21,6 @@ module.exports = {
     'node/no-callback-literal': 'off',
     'prefer-const': 'off',
     'dot-notation': 'off',
+    'import/order': 'off',
   }
 }
