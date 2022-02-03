@@ -43,7 +43,7 @@ export default function useFetch() {
     }
 
     let result, data
-
+    
     result = await fetch(url, init)
     data = await result.json()
 

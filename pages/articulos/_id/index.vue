@@ -4,30 +4,35 @@
     <h2>
       Artículo
     </h2>
+    <div>
+      {{ article }}
+      {{ fkSection }}
+    </div>
     <form id="MainForm" class="form" @submit.prevent="submit">
       <FieldText 
         id="InputCode" 
-        v-model="item.code" 
+        v-model="code" 
         label="Código" 
         name="code" 
         required 
       />
       <FieldText 
         id="InputName" 
-        v-model="item.name" 
+        v-model="name" 
         label="Nombre" 
         name="name" 
         required 
       />
       <FieldNumber 
         id="InputValue" 
-        v-model="item.value" 
+        v-model="value" 
         label="Valor" name="value" 
         required 
         :step="0.01" 
       />
       <FieldSelect 
         id="InputSection" 
+        v-model="fkSection"
         label="Sección" 
         name="fkSection" 
         required 
@@ -36,6 +41,8 @@
       />
       <FieldSelect 
         id="InputCategory" 
+        v-if="fkSection"
+        v-model="fkCategory"
         label="Categoria" 
         name="fkCategory" 
         required 
@@ -44,29 +51,29 @@
       />
       <FieldTextarea 
         id="InputShortDescription" 
-        v-model="item.shortDescription" 
+        v-model="shortDescription" 
         label="Descripción breve" 
         name="shortDescription" 
         rows="4"
       />
       <FieldTextarea 
         id="InputDescription" 
-        v-model="item.description" 
+        v-model="description" 
         label="Descripción" 
         name="description" 
       />
-      <FieldImage 
+      <!-- <FieldImage 
         id="InpuImages"
         label="Imágenes nuevas"
         name="files"
-      />
-      <div v-if="item.images && item.images.length" class="stack stack-200">
+      /> -->
+      <!-- <div v-if="images && images.length" class="stack stack-200">
         <p>Imágenes guardadas</p>
         <ImageReel 
-          :images="item.images"
+          :images="images"
           @remove="removeImage"
         />
-      </div>
+      </div> -->
     </form>
     <nav>
       <button class="button" @click="cancel">
@@ -80,97 +87,285 @@
 </template>
 
 <script>
-import { computed, onMounted, ref, useRoute, useRouter } from '@nuxtjs/composition-api'
+/* eslint-disable */
+import { computed, onMounted, reactive, ref, toRef, toRefs, useRoute, useRouter } from '@nuxtjs/composition-api'
 import { useResource, useSession, useHandler } from '~/composition'
 
+
 export default {
+  // ssetup() {
+    
+  //   // Composables
+
+  //   const $session = useSession()
+  //   const $route = useRoute()
+  //   const $router = useRouter()
+    
+  //   const $articles = useResource("/articles")
+  //   const $sections = useResource('/sections')
+
+  //   const state = reactive({
+  //     sections: [],
+  //     article: {
+  //       id: 0,
+  //       active: true,
+  //       code: '',
+  //       name: '',
+  //       value: '',
+  //       description: '',
+  //       shortDescription: '',
+  //       fkCategory: 0,
+  //       fkSection: 0,
+  //       images: [],
+  //       attributes: [],
+  //     },
+  //   })
+    
+  //   const { handle } = useHandler()
+
+  //   const item = ref({})
+
+  //   const id = computed(() => parseInt($route.value.params.id))
+    
+  //   // Actions
+    
+  //   const submit = handle(async () => {
+  //     const formData = new FormData()
+
+  //     formData.append('item', JSON.stringify(item.value))
+
+  //     if (id.value) {
+  //       await $articles.updateOne(id.value, formData)
+  //     }
+  //     else {
+  //       await $articles.insertOne(formData)
+  //     }
+
+  //     $router.back()
+  //   })
+    
+  //   const cancel = () => {
+  //     $router.back()
+  //   }
+
+  //   const removeImage = (index) => {
+  //     item.value.images.splice(index, 1)
+  //   }
+
+  //   // Data Loading    
+
+  //   const loadSections = async () => {
+  //     sections.value = await $sections.findMany()
+  //   }
+    
+  //   const loadItem = async () => {
+  //     item.value = await $articles.findOne(id.value) || {}
+  //   }
+
+  //   // Lifecycle
+    
+  //   onMounted(async () => {
+  //     await $session.onlyAuthed()
+  //     await loadSections()
+  //     await loadItem()
+  //   })
+    
+  //   return {
+  //     item,
+  //     section,
+  //     category,
+      
+  //     sections,
+  //     categories,
+      
+  //     removeImage,
+  //     submit,
+  //     cancel,
+  //   }
+  // },
   setup() {
-    
-    // Composables
-
     const $session = useSession()
-    const $route = useRoute()
     const $router = useRouter()
+    const $route = useRoute()
     
-    const $articles = useResource("/articles")
+    const $articles = useResource('/articles')
     const $sections = useResource('/sections')
-    
-    const { handle } = useHandler()
 
-    const item = ref({})
+    const id = parseInt($route.value.params.id)
 
-    const id = computed(() => parseInt($route.value.params.id))
+    // data
 
-    const sections = ref([])
-    
-    const section = computed(() => {
-      return sections.value?.find(section => section.id === item.value.category?.fkSection) || {}
+    const state = reactive({
+      article: {
+        id: 0,
+        active: true,
+        code: '',
+        name: '',
+        value: '',
+        description: '',
+        shortDescription: '',
+        fkCategory: 0,
+        images: [],
+        attributes: [],
+      },
+      fkSection: 0,
+      sections: []
     })
-    
+
+    // computed
+
+    const sections = computed(() => {
+      return state.sections || []
+    })
+
     const categories = computed(() => {
-      return section.value.categories || []
-    })
-
-    const category = computed(() => {
-      return categories.value.find(category => category.id === item.value.fkCategory)
-    })
-    
-    // Actions
-    
-    const submit = handle(async () => {
-      const formData = new FormData()
-
-      formData.append('item', JSON.stringify(item.value))
-
-      if (id.value) {
-        await $articles.updateOne(id.value, formData)
+      if(state.fkSection === 0) {
+        return []
       }
-      else {
-        await $articles.insertOne(formData)
+      const section = state.sections.find(section => section.id === state.fkSection) || {}
+      return section.categories || []
+    })
+
+    // article properties
+
+    const code = computed({
+      get() { 
+        return state.article.code 
+      },
+      set(value) { 
+        state.article.code = value 
+      },
+    })
+
+    const name = computed({
+      get() { 
+        return state.article.name
+      },
+      set(value) { 
+        state.article.name = value
+      },
+    })
+
+    const value = computed({
+      get() { 
+        return state.article.value
+      },
+      set(value) { 
+        state.article.value = parseFloat(value)
+      },
+    })
+
+    const fkSection = computed({
+      get() {
+        return state.fkSection
+      },
+      set(value) {
+        value = parseInt(value)
+        if(value !== state.fkSection) {
+          state.article.fkCategory = 0
+        }
+        state.fkSection = value
+      }
+    })
+
+    const fkCategory = computed({
+      get() {
+        return state.article.fkCategory
+      },
+      set(value) {
+        state.article.fkCategory = parseInt(value)
+      }
+    })
+
+    const shortDescription = computed({
+      get() { 
+        return state.article.shortDescription
+      },
+      set(value) { 
+        state.article.shortDescription = value
+      },
+    })
+
+    const description = computed({
+      get() { 
+        return state.article.description
+      },
+      set(value) { 
+        state.article.description = value
+      },
+    })
+
+    const images = computed({
+      get() { 
+        return state.article.images
+      },
+      set(value) { 
+        state.article.images = value
+      },
+    })
+
+    // actions
+
+    async function submit() {
+      try {
+        const formData = new FormData()
+  
+        formData.append('item', JSON.stringify(state.article))
+  
+        const result = id
+          ? await $articles.updateOne(id, formData)
+          : await $articles.insertOne(formData)
+  
+        alert(JSON.stringify(result))        
+      } catch (error) {
+        alert(JSON.stringify(error))
       }
 
+    }
+
+    function cancel() {
       $router.back()
-    })
-    
-    const cancel = () => {
-      $router.back()
     }
 
-    const removeImage = (index) => {
-      item.value.images.splice(index, 1)
+    // data loading
+
+    async function loadArticle() {
+      if(id !== 0) {
+        state.article = await $articles.findOne(id)
+      }
     }
 
-    // Data Loading    
-
-    const loadSections = async () => {
-      sections.value = await $sections.findMany()
-    }
-    
-    const loadItem = async () => {
-      item.value = await $articles.findOne(id.value) || {}
+    async function loadSections() {
+      state.sections = await $sections.findMany()
     }
 
-    // Lifecycle
-    
+    // init
+
     onMounted(async () => {
       await $session.onlyAuthed()
+      await loadArticle()
       await loadSections()
-      await loadItem()
     })
-    
+
     return {
-      item,
-      section,
-      category,
-      
+      article: state.article,
+
       sections,
       categories,
       
-      removeImage,
+      code,
+      name,
+      value,
+      fkSection,
+      fkCategory,
+      shortDescription,
+      description,
+      images,
+
       submit,
       cancel,
     }
-  },
+  }
 }
 
 </script>
