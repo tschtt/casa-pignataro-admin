@@ -63,18 +63,15 @@
         label="Descripción" 
         name="description" 
       />
-      <!-- <FieldImage 
-        id="InpuImages"
-        label="Imágenes nuevas"
-        name="files"
-      /> -->
-      <!-- <div v-if="images && images.length" class="stack stack-200">
-        <p>Imágenes guardadas</p>
-        <ImageReel 
-          :images="images"
-          @remove="removeImage"
-        />
-      </div> -->
+      <FieldFile 
+        id="InputImages"
+        v-model="files"
+        label="Imágenes"
+      />
+      <ImageReel 
+        :images="images"
+        @remove="removeImage"
+      />
     </form>
     <nav>
       <button class="button" @click="cancel">
@@ -89,7 +86,7 @@
 
 <script>
 import { computed, onMounted, reactive, useRoute, useRouter } from '@nuxtjs/composition-api'
-import { useResource, useSession } from '~/composition'
+import { useHandler, useResource, useSession } from '~/composition'
 import FieldAttributes from './-FieldAttributes.vue'
 
 
@@ -98,6 +95,8 @@ export default {
     FieldAttributes,
   },
   setup() {
+    const { handle } = useHandler()
+    
     const $session = useSession()
     const $router = useRouter()
     const $route = useRoute()
@@ -123,7 +122,8 @@ export default {
         attributes: [],
       },
       fkSection: 0,
-      sections: []
+      sections: [],
+      files: [],
     })
 
     // computed
@@ -235,28 +235,41 @@ export default {
       },
     })
 
+    const files = computed({
+      get() {
+        return state.files
+      },
+      set(value) {
+        state.files = value
+      }
+    })
+
     // actions
 
-    async function submit() {
-      try {
-        const formData = new FormData()
-  
-        formData.append('item', JSON.stringify(state.article))
-  
-        const result = id
-          ? await $articles.updateOne(id, formData)
-          : await $articles.insertOne(formData)
-  
-        alert(JSON.stringify(result))        
-      } catch (error) {
-        alert(JSON.stringify(error))
+    const removeImage = (index) => {
+      state.article.images.splice(index, 1)
+    }
+
+    const submit = handle(async () => {
+      const formData = new FormData()
+
+      formData.append('item', JSON.stringify(state.article))
+      
+      for (const file of state.files) {
+        formData.append('files', file)
       }
+      
+      if(id) 
+        await $articles.updateOne(id, formData)
+      else
+        await $articles.insertOne(formData)
 
-    }
-
-    function cancel() {
       $router.back()
-    }
+    })
+
+    const cancel = handle(() => {
+      $router.back()
+    })
 
     // data loading
 
@@ -282,8 +295,6 @@ export default {
     })
 
     return {
-      article: state.article,
-
       sections,
       categories,
       categoryAttributes,
@@ -300,7 +311,9 @@ export default {
       shortDescription,
       description,
       images,
+      files,
 
+      removeImage,
       submit,
       cancel,
     }

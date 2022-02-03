@@ -1,7 +1,14 @@
 
+// .scroll-x {
+//   display: grid;
+//   grid-auto-flow: column;
+//   overflow-x: auto;
+//   scrollbar-width: thin;
+//   -webkit-overflow-scrolling: touch;
+// }
+
 .scroll-x {
-  display: grid;
-  grid-auto-flow: column;
+  display: flex;
   overflow-x: auto;
   scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;

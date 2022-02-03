@@ -31,7 +31,7 @@ export default {
   border-radius: 10px;
 
   > * {
-    padding: var(--space-200);
+    padding: var(--space-300);
     gap: var(--space-200);
   }
   
@@ -51,14 +51,16 @@ export default {
   img {
     border-radius: 10px;
     box-shadow: var(--shadow-200);
-    min-width: 200px;
   }
   
 }
 
 .image {
+  width: 200px;
+  min-width: 200px;
   aspect-ratio: 1;
   > img {
+    width: 100%;
     height: 100%;
     object-fit: contain;
   }
