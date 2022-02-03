@@ -1,7 +1,7 @@
 <template>
   <main class="card card-table">
     <h2 class="title">
-      Categorías
+      Secciones
     </h2>
     <TableBase
       :columns="['Estado', 'Nombre']"
@@ -27,10 +27,10 @@
       </TableRow>
     </TableBase>
     <nav class="actions">
-      <nuxt-link class="button" :to="'/categorias/0'">
+      <nuxt-link class="button" :to="'/secciones/0'">
         Agregar
       </nuxt-link>
-      <nuxt-link :disabled="!selected" class="button" :event="selected ? 'click' : ''" :to="`/categorias/${selected}`">
+      <nuxt-link :disabled="!selected" class="button" :event="selected ? 'click' : ''" :to="`/secciones/${selected}`">
         Modificar
       </nuxt-link>
       <button :disabled="!selected" class="button" @click="remove">
@@ -50,7 +50,7 @@ export default {
     const $session = useSession()
     const $fetch = useFetch()
     
-    const $categories = useResource('/categories')
+    const $sections = useResource('/sections')
     
     const { handle } = useHandler()
 
@@ -59,17 +59,17 @@ export default {
     const selected = ref(0)
 
     const toggleActive = handle(async (item) => {
-      await $categories.updateOne(item.id, { ...item, active: !item.active })
+      await $sections.updateOne(item.id, { ...item, active: !item.active })
       await loadItems()
     })
 
     const remove = handle(async () => {
-      await $categories.removeOne({ id: selected.value })
+      await $sections.removeOne({ id: selected.value })
       await loadItems()
     })
     
     const loadItems = handle(async () => {
-      items.value =  await $categories.findMany()
+      items.value =  await $sections.findMany()
     })
     
     onMounted(async () => {
