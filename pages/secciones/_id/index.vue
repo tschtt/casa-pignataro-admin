@@ -70,7 +70,7 @@ export default {
       let result
       if (id) result = await $sections.updateOne(id, state.section)
       else result = await $sections.insertOne(state.section)
-      alert(JSON.stringify(result))
+      alert(JSON.stringify(result, null, 4))
       $router.back()
     })
     
@@ -100,6 +100,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.card {
+  position: relative;
+}
 
 fieldset {
   border: none;

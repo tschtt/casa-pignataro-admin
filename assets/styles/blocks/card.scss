@@ -1,8 +1,13 @@
 
 .card {
+  --card-padding-inline: var(--space-600);
+  --card-padding-block: var(--space-600);
+  --card-shadow: var(--shadow-400);
+  
   background-color: var(--clr-grey-100);
-  box-shadow: var(--shadow-400);
-  padding: var(--space-600);
+  box-shadow: var(--card-shadow);
+  padding: var(--card-padding-inline) var(--card-padding-block);
+  
   border-radius: 25px;
 
   width: 100%;

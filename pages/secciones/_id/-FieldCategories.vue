@@ -62,4 +62,12 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-200);
+}
+
+</style>
