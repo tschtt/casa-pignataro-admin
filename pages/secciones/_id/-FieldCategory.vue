@@ -16,7 +16,7 @@
       add
     </button>
     <button v-if="!add" class="button" icon error @click.prevent="remove">
-      delete
+      remove
     </button>
   </div>
 </template>

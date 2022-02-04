@@ -2,15 +2,9 @@
   <div class="field-attribute-container">
     <details class="field-attribute card">
       <summary class="card-title">
-        {{ name_local || 'Nuevo Attributo' }}
+        <input type="text" v-model="name_local">
       </summary>
-      <FieldText
-        id="InputName"
-        v-model="name_local"
-        label="Nombre"
-        required
-      />
-      <fieldset>
+      <fieldset class="card-content">
         <legend class="text">Opciones</legend>
         <div class="option" v-for="(option, index) in options_local" :key="index">
           <input type="text" v-model="options_local[index].name" />
@@ -30,7 +24,7 @@
       add
     </button>
     <button v-if="!add" class="button" icon error @click.prevent="remove">
-      delete
+      remove
     </button>
   </div>
 </template>
@@ -103,74 +97,103 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 fieldset {
   padding: 0;
   border: none;
 
   legend {
-    margin-bottom: var(--space-200);
+    margin-bottom: calc(var(--space-200) * -1);
+    // margin-bottom: var(--space-200);
   }
 }
 
 .field-attribute-container {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-200);
+  gap: var(--space-400);
 
-  button {
+  > button {
+    margin-top: var(--space-200);
     padding: var(--space-100);
   }
 }
 
 .field-attribute {
-  --card-padding-inline: var(--space-100);
-  --card-padding-block: var(--space-400);
+  --card-padding-inline: 0;
+  --card-padding-block: 0;
   --card-shadow: var(--shadow-100);
-  --card-space: var(--space-400);
+  --card-space: 0;
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    
+    &::before {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;  /* Preferred icon size */
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+
+      /* Support for all WebKit browsers. */
+      -webkit-font-smoothing: antialiased;
+      /* Support for Safari and Chrome. */
+      text-rendering: optimizeLegibility;
+
+      /* Support for Firefox. */
+      -moz-osx-font-smoothing: grayscale;
+
+      /* Support for IE. */
+      font-feature-settings: 'liga';
+      
+      margin: var(--space-200);
+      margin-right: 0;
+      padding: var(--space-100);
+      
+      background-color: var(--clr-grey-200);
+      color: var(--clr-grey-800);
+      
+      box-shadow: var(--shadow-100);
+      border-radius: 25px;
+      content: "arrow_right"
+    }
+
+    input {
+      margin: var(--space-200);
+      // box-shadow: none;
+    }
+  }
+
+  .card-content {
+    padding: var(--space-400);
+  }
 
   &[open] {
+    
+    .card-title::before {
+      content: "arrow_drop_down"
+    }
+    
     // --card-padding-inline: var(--space-300);
     // --card-padding-block: var(--space-500);
-    padding-bottom: var(--space-400);
+    // padding-bottom: var(--space-400);
   }
 
   .card-title {
     cursor: pointer;
   }
-
   .card-content {
     > * + * {
       margin-top: var(--space-100);
     }
   }
-
-  // &[open] {
-  //   --card-padding-inline: var(--space-600);
-  //   --card-padding-block: var(--space-600);
-
-  //   position: absolute;
-  //   left: 0;
-  //   top: 0;
-
-  //   width: 100%;
-  //   height: 100%;
-
-  //   overflow-y: auto;
-
-  //   .card-content {
-  //     display: flex;
-  //     flex-direction: column;
-  //     gap: var(--space-200);
-  //   }
-
-  //   .card-title {
-  //     font-family: var(--font-heading);
-  //     font-size: var(--text-300);
-  //     font-weight: bold;
-  //     line-height: 1rem;
-  //     letter-spacing: 1px;
-  //   }
-  // }
 }
 
 .option {
