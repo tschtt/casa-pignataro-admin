@@ -1,5 +1,5 @@
 <template>
-  <fieldset>
+  <fieldset class="field-attributes">
     <legend class="subtitle">Atributos</legend>
     <FieldAttribute 
       v-for="(a, index) in attributes_local" :key="index"
@@ -61,12 +61,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
-fieldset {
+.field-attributes {
   display: flex;
   flex-direction: column;
   gap: var(--space-300);
+
+  padding: var(--space-400);
+  
+
+  > .subtitle {
+    padding-block: var(--space-200);
+    margin-bottom: calc(var(--space-200) * -1);
+    // margin-bottom: var(--space-200);
+    font-size: 18px;
+  }
 }
 
 </style>

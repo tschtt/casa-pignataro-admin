@@ -1,8 +1,8 @@
 <template>
   <div class="field-attribute-container">
-    <details class="field-attribute card">
+    <details class="field-attribute">
       <summary class="card-title">
-        <input type="text" v-model="name_local">
+        <input type="text" v-model="name_local" placeholder="Nuevo atributo">
       </summary>
       <fieldset class="card-content">
         <legend class="text">Opciones</legend>
@@ -112,6 +112,7 @@ fieldset {
   display: flex;
   align-items: flex-start;
   gap: var(--space-400);
+  min-width: 0;
 
   > button {
     margin-top: var(--space-200);
@@ -124,6 +125,15 @@ fieldset {
   --card-padding-block: 0;
   --card-shadow: var(--shadow-100);
   --card-space: 0;
+
+  flex-grow: 1;
+
+  box-shadow: var(--card-shadow);
+  padding: var(--card-padding-inline) var(--card-padding-block);
+  
+  border-radius: 25px;
+
+  box-shadow: var(--shadow-100);
 
   .card-title {
     display: flex;

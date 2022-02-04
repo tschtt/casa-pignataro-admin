@@ -105,6 +105,7 @@ export default {
 
 fieldset {
   border: none;
+  min-width: 0;
 }
 
 </style>

@@ -1,16 +1,10 @@
 <template>
   <div class="field-category-container">
-    <details class="field-category card">
+    <details class="field-category">
       <summary class="card-title">
-        {{ title }}
+        <input type="text" v-model="name_local" placeholder="Nueva categoria">
       </summary>
-      <div class="card-content">
-        <fieldset>
-          <legend class="subtitle">Datos de la categoría</legend>
-          <FieldText id="InputName" v-model="name_local" label="Nombre" required />
-        </fieldset>
-        <FieldAttributes :attributes.sync="attributes_local" />
-      </div>
+      <FieldAttributes :attributes.sync="attributes_local" />
     </details>
     <button v-if="add" class="button" icon success @click.prevent="insert">
       add
@@ -105,62 +99,165 @@ export default {
 <style lang="scss" scoped>
 
 fieldset {
+  padding: 0;
   border: none;
+  min-width: 0;
+
+  legend {
+    // margin-bottom: calc(var(--space-200) * -1);
+    margin-bottom: var(--space-200);
+  }
 }
 
 .field-category-container {
   display: flex;
-  align-items: center;
-  gap: var(--space-200);
+  align-items: flex-start;
+  gap: var(--space-400);
+  width: 100%;
 
-  button {
+  > button {
+    margin-top: var(--space-200);
     padding: var(--space-100);
   }
 }
 
 .field-category {
-  --card-padding-inline: var(--space-100);
-  --card-padding-block: var(--space-400);
+  --card-padding-inline: 0;
+  --card-padding-block: 0;
   --card-shadow: var(--shadow-100);
+  --card-space: 0;
+
+  flex-grow: 1;
+
+  box-shadow: var(--card-shadow);
+  padding: var(--card-padding-inline) var(--card-padding-block);
+  
+  border-radius: 25px;
+
+  box-shadow: var(--shadow-100);
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-200);
+
+    &::before {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;  /* Preferred icon size */
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+
+      /* Support for all WebKit browsers. */
+      -webkit-font-smoothing: antialiased;
+      /* Support for Safari and Chrome. */
+      text-rendering: optimizeLegibility;
+
+      /* Support for Firefox. */
+      -moz-osx-font-smoothing: grayscale;
+
+      /* Support for IE. */
+      font-feature-settings: 'liga';
+      
+      margin: var(--space-200);
+      margin-right: 0;
+      padding: var(--space-100);
+      
+      background-color: var(--clr-grey-200);
+      color: var(--clr-grey-800);
+      
+      box-shadow: var(--shadow-100);
+      border-radius: 25px;
+      content: "arrow_right"
+    }
+
+    > span {
+      display: none;
+    }
+
+    > input {
+      margin: var(--space-200);
+    }
+  }
+  .card-content {
+    padding: var(--space-400);
+  }
+
+  &[open] {
+    .card-title {
+      
+      &::before {
+        content: "arrow_drop_down"
+      }
+
+    }
+    
+    
+    // --card-padding-inline: var(--space-300);
+    // --card-padding-block: var(--space-500);
+    // padding-bottom: var(--space-400);
+  }
 
   .card-title {
     cursor: pointer;
   }
-
-  &[open] {
-    --card-padding-inline: var(--space-600);
-    --card-padding-block: var(--space-600);
-    
-    position: absolute;
-    left: 0;
-    top: 0;
-    
-    width: 100%;
-    height: 100%;
-
-    overflow-y: auto;
-
-    > .card-title {
-      font-family: var(--font-heading);
-      font-size: var(--text-300);
-      font-weight: bold;
-      line-height: 1rem;
-      letter-spacing: 1px;
+  .card-content {
+    > * + * {
+      margin-top: var(--space-100);
     }
-
-    > .card-content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-200);
-
-      > .card-actions {
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
-      }
-    }
-
   }
 }
+
+
+// .field-category {
+//   --card-padding-inline: var(--space-100);
+//   --card-padding-block: var(--space-400);
+//   --card-shadow: var(--shadow-100);
+
+//   .card-title {
+//     cursor: pointer;
+//   }
+
+//   &[open] {
+//     --card-padding-inline: var(--space-600);
+//     --card-padding-block: var(--space-600);
+    
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+    
+//     width: 100%;
+//     height: 100%;
+
+//     overflow-y: auto;
+
+//     > .card-title {
+//       font-family: var(--font-heading);
+//       font-size: var(--text-300);
+//       font-weight: bold;
+//       line-height: 1rem;
+//       letter-spacing: 1px;
+//     }
+
+//     > .card-content {
+//       display: flex;
+//       flex-direction: column;
+//       gap: var(--space-200);
+
+//       > .card-actions {
+//         display: flex;
+//         justify-content: flex-end;
+//         align-items: flex-end;
+//       }
+//     }
+
+//   }
+// }
 
 </style>
