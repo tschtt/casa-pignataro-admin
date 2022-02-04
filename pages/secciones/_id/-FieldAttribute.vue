@@ -1,32 +1,30 @@
 <template>
-  <div class="field-attribute-container">
-    <details class="field-attribute">
-      <summary class="card-title">
-        <input type="text" v-model="name_local" placeholder="Nuevo atributo">
-      </summary>
-      <fieldset class="card-content">
-        <legend class="text">Opciones</legend>
-        <div class="option" v-for="(option, index) in options_local" :key="index">
-          <input type="text" v-model="options_local[index].name" />
-          <button class="button" icon error @click="optionRemove(index)">
-            remove
-          </button>
-        </div>
-        <div class="option">
-          <input v-model="option.name" type="text" placeholder="Nueva opcion" />
-          <button class="button" icon success @click="optionInsert">
-            add
-          </button>
-        </div>
-      </fieldset>
-    </details>
-    <button v-if="add" class="button" icon success @click.prevent="insert">
-      add
-    </button>
-    <button v-if="!add" class="button" icon error @click.prevent="remove">
-      remove
-    </button>
-  </div>
+  <details class="field-attribute">
+    <summary class="card-title">
+      <input type="text" v-model="name_local" placeholder="Nuevo atributo">
+      <button v-if="add" class="button" icon success @click.prevent="insert">
+        add
+      </button>
+      <button v-if="!add" class="button" icon error @click.prevent="remove">
+        remove
+      </button>
+    </summary>
+    <fieldset class="card-content">
+      <legend class="text">Opciones</legend>
+      <div class="option" v-for="(option, index) in options_local" :key="index">
+        <input type="text" v-model="options_local[index].name" />
+        <button class="button" icon error @click.prevent="optionRemove(index)">
+          remove
+        </button>
+      </div>
+      <div class="option">
+        <input v-model="option.name" type="text" placeholder="Nueva opcion" />
+        <button class="button" icon success @click.prevent="optionInsert">
+          add
+        </button>
+      </div>
+    </fieldset>
+  </details>
 </template>
 
 <script>
@@ -137,7 +135,10 @@ fieldset {
 
   .card-title {
     display: flex;
+    justify-content: center;
     align-items: center;
+    gap: var(--space-200);
+    padding: var(--space-200);
     
     &::before {
       font-family: 'Material Icons';
@@ -163,8 +164,6 @@ fieldset {
       /* Support for IE. */
       font-feature-settings: 'liga';
       
-      margin: var(--space-200);
-      margin-right: 0;
       padding: var(--space-100);
       
       background-color: var(--clr-grey-200);
@@ -175,9 +174,12 @@ fieldset {
       content: "arrow_right"
     }
 
-    input {
-      margin: var(--space-200);
-      // box-shadow: none;
+    > input {
+      margin: 0;
+    }
+
+    > button {
+      padding: var(--space-100);
     }
   }
 

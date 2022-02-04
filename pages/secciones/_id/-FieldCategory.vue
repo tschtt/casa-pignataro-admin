@@ -1,26 +1,24 @@
 <template>
-  <div class="field-category-container">
-    <details class="field-category">
-      <summary class="card-title">
-        <input type="text" v-model="name_local" placeholder="Nueva categoria">
-      </summary>
-      <FieldAttributes :attributes.sync="attributes_local" />
-    </details>
-    <button v-if="add" class="button" icon success @click.prevent="insert">
-      add
-    </button>
-    <button v-if="!add" class="button" icon error @click.prevent="remove">
-      remove
-    </button>
-  </div>
+  <details class="field-category">
+    <summary class="card-title">
+      <input type="text" v-model="name_local" placeholder="Nueva categoria" />
+      <button v-if="add" class="button" icon success @click.prevent="insert">
+        add
+      </button>
+      <button v-if="!add" class="button" icon error @click.prevent="remove">
+        remove
+      </button>
+    </summary>
+    <FieldAttributes :attributes.sync="attributes_local" />
+  </details>
 </template>
 
 <script>
 /* eslint-disable vue/no-unused-components */
 import FieldAttributes from './-FieldAttributes.vue'
 export default {
-  components: { 
-    FieldAttributes,
+  components: {
+    FieldAttributes
   },
   props: {
     id: {
@@ -33,11 +31,11 @@ export default {
     },
     attributes: {
       type: Array,
-      required: true,
+      required: true
     },
     section: {
       type: String,
-      required: true,
+      required: true
     },
     add: {
       type: Boolean,
@@ -49,8 +47,8 @@ export default {
       attribute: {
         id: 0,
         name: '',
-        options: [],
-      },
+        options: []
+      }
     }
   },
   computed: {
@@ -80,11 +78,13 @@ export default {
       this.attribute = {
         id: 0,
         name: '',
-        options: [],
+        options: []
       }
     },
     attributeRemove(index) {
-      this.attributes_local = this.attributes_local.filter((a,i) => i !== index)
+      this.attributes_local = this.attributes_local.filter(
+        (a, i) => i !== index
+      )
     },
     insert() {
       this.$emit('insert')
@@ -97,7 +97,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 fieldset {
   padding: 0;
   border: none;
@@ -131,16 +130,18 @@ fieldset {
 
   box-shadow: var(--card-shadow);
   padding: var(--card-padding-inline) var(--card-padding-block);
-  
+
   border-radius: 25px;
 
   box-shadow: var(--shadow-100);
 
   .card-title {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: var(--space-200);
-
+    padding: var(--space-200);
+    
     &::before {
       font-family: 'Material Icons';
       font-weight: normal;
@@ -165,8 +166,6 @@ fieldset {
       /* Support for IE. */
       font-feature-settings: 'liga';
       
-      margin: var(--space-200);
-      margin-right: 0;
       padding: var(--space-100);
       
       background-color: var(--clr-grey-200);
@@ -177,12 +176,12 @@ fieldset {
       content: "arrow_right"
     }
 
-    > span {
-      display: none;
+    > input {
+      margin: 0;
     }
 
-    > input {
-      margin: var(--space-200);
+    > button {
+      padding: var(--space-100);
     }
   }
   .card-content {
@@ -191,14 +190,11 @@ fieldset {
 
   &[open] {
     .card-title {
-      
       &::before {
-        content: "arrow_drop_down"
+        content: 'arrow_drop_down';
       }
-
     }
-    
-    
+
     // --card-padding-inline: var(--space-300);
     // --card-padding-block: var(--space-500);
     // padding-bottom: var(--space-400);
@@ -214,7 +210,6 @@ fieldset {
   }
 }
 
-
 // .field-category {
 //   --card-padding-inline: var(--space-100);
 //   --card-padding-block: var(--space-400);
@@ -227,11 +222,11 @@ fieldset {
 //   &[open] {
 //     --card-padding-inline: var(--space-600);
 //     --card-padding-block: var(--space-600);
-    
+
 //     position: absolute;
 //     left: 0;
 //     top: 0;
-    
+
 //     width: 100%;
 //     height: 100%;
 
@@ -259,5 +254,4 @@ fieldset {
 
 //   }
 // }
-
 </style>
