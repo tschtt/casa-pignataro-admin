@@ -3,6 +3,7 @@
   --card-padding-inline: var(--space-600);
   --card-padding-block: var(--space-600);
   --card-shadow: var(--shadow-400);
+  --card-space: var(--space-600);
   
   background-color: var(--clr-grey-100);
   box-shadow: var(--card-shadow);
@@ -13,7 +14,7 @@
   width: 100%;
   
   > * + * {
-    margin-top: var(--space-600);
+    margin-top: var(--card-space);
   }
 }
 

@@ -3,7 +3,7 @@
     <h2 class="title">Sección</h2>
     <form id="MainForm" class="form" @submit.prevent="submit">
       <FieldSection :name.sync="name" />
-      <FieldCategories :categories.sync="categories" />
+      <FieldCategories :section="name" :categories.sync="categories" />
     </form>
     <nav class="flex flex-wrap justify-end">
       <button class="button" @click="cancel">Cancelar</button>
@@ -67,10 +67,8 @@ export default {
     // actions
     
     const submit = handle(async () => {
-      let result
-      if (id) result = await $sections.updateOne(id, state.section)
-      else result = await $sections.insertOne(state.section)
-      alert(JSON.stringify(result, null, 4))
+      if (id) await $sections.updateOne(id, state.section)
+      else await $sections.insertOne(state.section)
       $router.back()
     })
     

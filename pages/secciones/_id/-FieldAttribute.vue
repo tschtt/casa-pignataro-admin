@@ -1,20 +1,17 @@
 <template>
-  <details class="field-attribute card">
-    <summary class="card-title">
-      {{ name_local || 'Nuevo Attributo' }}
-    </summary>
-    <div class="card-content">
+  <div class="field-attribute-container">
+    <details class="field-attribute card">
+      <summary class="card-title">
+        {{ name_local || 'Nuevo Attributo' }}
+      </summary>
+      <FieldText
+        id="InputName"
+        v-model="name_local"
+        label="Nombre"
+        required
+      />
       <fieldset>
-        <legend class="subtitle">Datos del atributo</legend>
-        <FieldText
-          id="InputName"
-          v-model="name_local"
-          label="Nombre"
-          required
-        />
-      </fieldset>
-      <fieldset>
-        <legend class="subtitle">Opciones</legend>
+        <legend class="text">Opciones</legend>
         <div class="option" v-for="(option, index) in options_local" :key="index">
           <input type="text" v-model="options_local[index].name" />
           <button class="button" icon error @click="optionRemove(index)">
@@ -28,16 +25,14 @@
           </button>
         </div>
       </fieldset>
-      <div class="card-actions">
-        <button v-if="add" class="button" success @click.prevent="insert">
-          Agregar
-        </button>
-        <button v-if="!add" class="button" error @click.prevent="remove">
-          Eliminar
-        </button>
-      </div>
-    </div>
-  </details>
+    </details>
+    <button v-if="add" class="button" icon success @click.prevent="insert">
+      add
+    </button>
+    <button v-if="!add" class="button" icon error @click.prevent="remove">
+      delete
+    </button>
+  </div>
 </template>
 
 <script>
@@ -109,50 +104,73 @@ export default {
 
 <style lang="scss" scoped>
 fieldset {
+  padding: 0;
   border: none;
+
+  legend {
+    margin-bottom: var(--space-200);
+  }
+}
+
+.field-attribute-container {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-200);
+
+  button {
+    padding: var(--space-100);
+  }
 }
 
 .field-attribute {
-  --card-padding-inline: var(--space-200);
+  --card-padding-inline: var(--space-100);
   --card-padding-block: var(--space-400);
   --card-shadow: var(--shadow-100);
+  --card-space: var(--space-400);
+
+  &[open] {
+    // --card-padding-inline: var(--space-300);
+    // --card-padding-block: var(--space-500);
+    padding-bottom: var(--space-400);
+  }
 
   .card-title {
     cursor: pointer;
   }
 
-  &[open] {
-    --card-padding-inline: var(--space-600);
-    --card-padding-block: var(--space-600);
-
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    overflow-y: auto;
-
-    .card-content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-200);
-    }
-
-    .card-title {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      line-height: 1rem;
-      letter-spacing: 1px;
-    }
-
-    .card-actions {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
+  .card-content {
+    > * + * {
+      margin-top: var(--space-100);
     }
   }
+
+  // &[open] {
+  //   --card-padding-inline: var(--space-600);
+  //   --card-padding-block: var(--space-600);
+
+  //   position: absolute;
+  //   left: 0;
+  //   top: 0;
+
+  //   width: 100%;
+  //   height: 100%;
+
+  //   overflow-y: auto;
+
+  //   .card-content {
+  //     display: flex;
+  //     flex-direction: column;
+  //     gap: var(--space-200);
+  //   }
+
+  //   .card-title {
+  //     font-family: var(--font-heading);
+  //     font-size: var(--text-300);
+  //     font-weight: bold;
+  //     line-height: 1rem;
+  //     letter-spacing: 1px;
+  //   }
+  // }
 }
 
 .option {

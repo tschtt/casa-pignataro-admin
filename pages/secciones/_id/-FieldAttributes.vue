@@ -66,7 +66,7 @@ export default {
 fieldset {
   display: flex;
   flex-direction: column;
-  gap: var(--space-200);
+  gap: var(--space-300);
 }
 
 </style>

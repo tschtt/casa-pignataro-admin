@@ -5,10 +5,12 @@
     <FieldCategory 
       v-for="(category, index) in categories_local" :key="index"
       v-bind.sync="categories_local[index]"
+      :section="section"
       @remove="remove"
     />
     <FieldCategory add
       v-bind.sync="category"
+      :section="section"
       @insert="insert"
     />
   </fieldset>
@@ -22,6 +24,10 @@ export default {
     FieldCategory,
   },
   props: {
+    section: {
+      type: String,
+      required: true,
+    },
     categories: {
       type: Array,
       requred: true,
@@ -67,7 +73,7 @@ export default {
 fieldset {
   display: flex;
   flex-direction: column;
-  gap: var(--space-200);
+  gap: var(--space-300);
 }
 
 </style>

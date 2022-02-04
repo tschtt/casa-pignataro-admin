@@ -1,24 +1,24 @@
 <template>
-  <details class="field-category card">
-    <summary class="card-title">
-      {{ name_local || 'Nueva categoría' }}
-    </summary>
-    <div class="card-content">
-      <fieldset>
-        <legend class="subtitle">Datos de la categoría</legend>
-        <FieldText id="InputName" v-model="name_local" label="Nombre" required />
-      </fieldset>
-      <FieldAttributes :attributes.sync="attributes_local" />
-      <div class="card-actions">
-        <button v-if="add" class="button" success @click.prevent="insert">
-          Agregar
-        </button>
-        <button v-if="!add" class="button" error @click.prevent="remove">
-          Eliminar
-        </button>
+  <div class="field-category-container">
+    <details class="field-category card">
+      <summary class="card-title">
+        {{ title }}
+      </summary>
+      <div class="card-content">
+        <fieldset>
+          <legend class="subtitle">Datos de la categoría</legend>
+          <FieldText id="InputName" v-model="name_local" label="Nombre" required />
+        </fieldset>
+        <FieldAttributes :attributes.sync="attributes_local" />
       </div>
-    </div>
-  </details>
+    </details>
+    <button v-if="add" class="button" icon success @click.prevent="insert">
+      add
+    </button>
+    <button v-if="!add" class="button" icon error @click.prevent="remove">
+      delete
+    </button>
+  </div>
 </template>
 
 <script>
@@ -41,6 +41,10 @@ export default {
       type: Array,
       required: true,
     },
+    section: {
+      type: String,
+      required: true,
+    },
     add: {
       type: Boolean,
       default: false
@@ -56,6 +60,9 @@ export default {
     }
   },
   computed: {
+    title() {
+      return `${this.name || 'Nueva categoría'}`
+    },
     name_local: {
       get() {
         return this.name
@@ -100,8 +107,19 @@ export default {
 fieldset {
   border: none;
 }
+
+.field-category-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-200);
+
+  button {
+    padding: var(--space-100);
+  }
+}
+
 .field-category {
-  --card-padding-inline: var(--space-200);
+  --card-padding-inline: var(--space-100);
   --card-padding-block: var(--space-400);
   --card-shadow: var(--shadow-100);
 
@@ -124,7 +142,8 @@ fieldset {
 
     > .card-title {
       font-family: var(--font-heading);
-      font-size: 20px;
+      font-size: var(--text-300);
+      font-weight: bold;
       line-height: 1rem;
       letter-spacing: 1px;
     }
