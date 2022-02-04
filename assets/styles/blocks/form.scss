@@ -4,6 +4,19 @@
     margin-top: var(--space-400);
   }
 
+  fieldset {
+    border-radius: 15px;
+    padding: var(--space-400);
+
+    + fieldset {
+      margin-top: var(--space-400);
+    }
+  }
+
+  .form-actions {
+    margin-top: var(--space-400);
+  }
+
   .input, input, textarea, select {
     background-color: var(--clr-grey-100);
     margin-top: var(--space-200);
