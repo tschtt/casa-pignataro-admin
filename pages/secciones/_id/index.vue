@@ -7,7 +7,7 @@
     </form>
     <nav class="flex flex-wrap justify-end">
       <button class="button" @click="cancel">Cancelar</button>
-      <button class="button" form="MainForm" @click="submit" success>Guardar</button>
+      <button class="button" form="MainForm" success>Guardar</button>
     </nav>
   </main>
 </template>
@@ -106,6 +106,8 @@ export default {
 fieldset {
   border: none;
   min-width: 0;
+  padding: 0;
+  padding-top: var(--space-400);
 }
 
 </style>

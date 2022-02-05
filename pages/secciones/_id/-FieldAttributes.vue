@@ -51,7 +51,7 @@ export default {
       this.attribute = {
         id: 0,
         name: '',
-        attributes: [],
+        options: [],
       }
     },
     remove(index) {
