@@ -6,7 +6,7 @@
       v-for="(category, index) in categories_local" :key="index"
       v-bind.sync="categories_local[index]"
       :section="section"
-      @remove="remove"
+      @remove="remove(index)"
     />
     <FieldCategory add
       v-bind.sync="category"
@@ -54,15 +54,15 @@ export default {
   },
   methods: {
     insert() {
-      this.$emit('update:categories', [...this.categories, this.category])
+      this.categories_local = [...this.categories_local, this.category]
       this.category = {
         id: 0,
         name: '',
         attributes: [],
       }
     },
-    remove(id) {
-      this.$emit('update:categories', this.categories.filter(c => c.id !== id))
+    remove(index) {
+      this.categories_local = this.categories_local.filter((c, i) => i !== index)
     },
   }
 }
