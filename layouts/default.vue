@@ -28,11 +28,6 @@
           </nuxt-link>          
         </li>
         <li>
-          <nuxt-link to="/perfil" @click.native="toggleNav">
-            Mi Perfil
-          </nuxt-link>
-        </li>
-        <li>
           <nuxt-link to="/articulos" @click.native="toggleNav">
             Artículos
           </nuxt-link>
@@ -50,6 +45,11 @@
         <li>
           <nuxt-link to="/administradores" @click.native="toggleNav">
             Administradores
+          </nuxt-link>
+        </li>
+        <li>
+          <nuxt-link to="/perfil" @click.native="toggleNav">
+            Mi Perfil
           </nuxt-link>
         </li>
       </ul>

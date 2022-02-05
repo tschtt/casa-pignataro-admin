@@ -15,7 +15,9 @@
   letter-spacing: 1px;
 }
 
-
+.text {
+  max-width: 60ch;
+}
 
 .title-2 {
   font-family: var(--font-heading);
