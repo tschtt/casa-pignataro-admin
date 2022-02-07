@@ -65,5 +65,16 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // transpile: ['vee-validate'],
+    postcss: { 
+      plugins: { 
+        "postcss-custom-properties": false, 
+        'postcss-preset-env': { 
+          features: { 
+            'custom-properties': false 
+          } 
+        } 
+      } 
+    }
   }
 }
