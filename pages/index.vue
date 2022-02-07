@@ -2,10 +2,9 @@
   <main class="main card">
     <h2 class="center">Panel de Administración</h2>
     <p class="center">
-      Bienvenido al panel de administración de
-      <b>Casa Pignataro</b>. Aquí podrá modificar los datos
-      de la tienda, asi como tambien las cuentas de 
-      administrador, entre otras cosas.
+      Bienvenido al panel de administración de <b>Casa Pignataro</b>. 
+      Aquí podrá modificar los datos de la tienda, así como tambien 
+      las cuentas de administrador, entre otras cosas.
     </p>
     <ul>
       <li>
@@ -13,9 +12,7 @@
           <article>
             <h4>Artículos</h4>
             <p>
-              Modificá los distintos datos de los artículos, como
-              su nombre, precio o atributos. También podes exportar 
-              los artículos a un excel, o importarlos desde uno.
+              Modificá los distintos datos de los artículos, como su nombre, precio o atributos. También podes exportar los artículos a un excel, o importarlos desde uno.
             </p>
           </article>
         </nuxt-link>
@@ -25,21 +22,13 @@
           <article>
             <h4>Secciones, categorías y atributos</h4>
             <p>
-              Configurá la forma en que se agrupan los artículos en la tienda.
-              Esto permitirá que los usuarios encuentren con mayor facilidad lo 
-              que estan buscando.
+              Configurá la forma en que se agrupan los artículos en la tienda. Esto permitirá que los usuarios encuentren con mayor facilidad lo que están buscando.
             </p>
             <p>
-              Las <b>Secciones</b> son los grupos principales en que se divide
-              la página, y estan compuestos por <b>Categorías</b>. Estas son mas 
-              definidas que las secciones, y permiten enfocar mas profundamente la 
-              busqueda. 
+              Las <b>Secciones</b> son los grupos principales en que se divide la página, y están compuestos por <b>Categorías</b>. Estas son mas definidas que las secciones, y permiten enfocar mas profundamente la búsqueda.
             </p>
             <p>
-              Además, cada categoría puede contar con uno o mas <b>Atributos</b>.
-              Estos son las caracteristicas similares con las que cuentan todos los
-              artículos de una misma categoría, como pueden ser la marca, el voltaje,
-              entre otras cosas.
+              Además, cada categoría puede contar con uno o mas <b>Atributos</b>. Estos son las características similares con las que cuentan todos los artículos de una misma categoría, como pueden ser la marca, el voltaje, entre otras cosas.
             </p>
           </article>
         </nuxt-link>
@@ -49,9 +38,7 @@
           <article>
             <h4>Datos de contacto</h4>
             <p>
-              Agregá, modificá o eliminá los datos con los que los usuarios 
-              podrán ponerse en contacto con Casa Pignataro. Estos pueden ser
-              direcciones, teléfonos, horarios, entre muchos datos más.
+              Agregá, modificá o eliminá los datos con los que los usuarios podrán ponerse en contacto con Casa Pignataro. Estos pueden ser direcciones, teléfonos, horarios, entre muchos datos más.
             </p>
           </article>
         </nuxt-link>
@@ -61,8 +48,7 @@
           <article>
             <h4>Administradores</h4>
             <p>
-              Configurá quienes pueden acceder al panel de 
-              administración. Agregá, modificá y eliminá cuentas.
+              Configurá quienes pueden acceder al panel de administración. Agregá, modificá y eliminá cuentas.
             </p>
           </article>
         </nuxt-link>
@@ -72,8 +58,7 @@
           <article>
             <h4>Mi Perfil</h4>
             <p>
-              Desde aquí podras administrar los datos relacionados a tu 
-              cuenta, como cambiár tu contraseña o cerrar sesión.
+              Desde aquí podrás administrar los datos relacionados a tu cuenta, como cambiar tu contraseña o cerrar sesión.
             </p>
           </article>
         </nuxt-link>
