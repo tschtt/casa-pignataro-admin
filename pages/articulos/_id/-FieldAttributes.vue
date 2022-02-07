@@ -55,10 +55,12 @@ export default {
     value: {
       type: Array,
       required: true,
+      default: () => [],
     },
     attributes: {
       type: Array,
       required: true,
+      default: () => []
     },
   },
   watch: {
@@ -72,8 +74,6 @@ export default {
   methods: {
     loadAttributes() {
       let value = this.value.filter(v => !!v.value)
-
-      console.log(value)
 
       if(value.length === 0) {
         value = this.attributes.map(({ name, options }) => {
