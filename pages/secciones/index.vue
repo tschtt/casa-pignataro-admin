@@ -33,9 +33,6 @@
       <nuxt-link :disabled="!selected" class="button" :event="selected ? 'click' : ''" :to="`/secciones/${selected}`">
         Modificar
       </nuxt-link>
-      <button :disabled="!selected" class="button" @click="remove">
-        Eliminar
-      </button>
     </nav>
   </main>
 </template>

@@ -27,7 +27,7 @@
         <td>{{ item.code }}</td>
         <td>{{ item.name }}</td>
         <td right>{{ formatPrice(item.value) }}</td>
-        <td left>{{  item.category.section + ' / ' + item.category.name }}</td>
+        <td left>{{ item.category.name }}</td>
       </TableRow>
     </TableFull>
     <nav class="actions">

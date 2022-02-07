@@ -283,7 +283,7 @@ export default {
     }
 
     async function loadSections() {
-      state.sections = await $sections.findMany()
+      state.sections = await $sections.findMany({ active: true })
     }
 
     // init
