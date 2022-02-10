@@ -1,7 +1,14 @@
 
 /* ----- Base styles ----- */
 
-.icon::before {
+.icon-before {
+  display: flex;
+  align-items: center;
+  gap: var(--space-200);
+}
+
+.icon::before,
+.icon-before::before {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
@@ -25,6 +32,10 @@
   /* Support for IE. */
   font-feature-settings: 'liga';
 
+}
+
+.icon-before[name]::before {
+  content: attr(name);
 }
 
 /* ----- Sizes ----- */

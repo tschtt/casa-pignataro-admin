@@ -10,7 +10,7 @@ export default function useFetch() {
   
   const base = env.BACKEND_URL
 
-  const request = async ({ route, query = {}, method, headers = {}, body } = {}) => {
+  const request = async ({ route, query = {}, method, headers = {}, body, type } = {}) => {
     let url, init
 
     url = new URL(route, base)
@@ -45,13 +45,29 @@ export default function useFetch() {
     let result, data
     
     result = await fetch(url, init)
-    data = await result.json()
+
+    switch (type) {
+      case 'blob':
+        data = await result.blob()
+        break;
+      default:
+        data = await result.json()
+        break;
+    }
+
 
     if(!result.ok && result.status === 401 && !!state.refreshCallback) {
       await state.refreshCallback()
       init.headers.Authorization = state.token && `Bearer ${state.token}`
       result = await fetch(url, init)
-      data = await result.json()
+      switch (type) {
+        case 'blob':
+          data = await result.blob()
+          break;
+        default:
+          data = await result.json()
+          break;
+      }
     }
 
     if(!result.ok) {
@@ -62,20 +78,20 @@ export default function useFetch() {
   }
 
   return {
-    get: (route, { body, query } = {}) => {
-      return request({ route, method: 'GET', body, query })
+    get: (route, { body, query, type } = {}) => {
+      return request({ route, method: 'GET', body, query, type })
     },
-    post: (route, { body, query } = {}) => {
-      return request({ route, method: 'POST', body, query })
+    post: (route, { body, query, type } = {}) => {
+      return request({ route, method: 'POST', body, query, type })
     },
-    put: (route, { body, query } = {}) => {
-      return request({ route, method: 'PUT', body, query })
+    put: (route, { body, query, type } = {}) => {
+      return request({ route, method: 'PUT', body, query, type })
     },
-    patch: (route, { body, query } = {}) => {
-      return request({ route, method: 'PATCH', body, query })
+    patch: (route, { body, query, type } = {}) => {
+      return request({ route, method: 'PATCH', body, query, type })
     },
-    del: (route, { body, query } = {}) => {
-      return request({ route, method: 'DELETE', body, query })
+    del: (route, { body, query, type } = {}) => {
+      return request({ route, method: 'DELETE', body, query, type })
     },
 
     setToken: (token) => {

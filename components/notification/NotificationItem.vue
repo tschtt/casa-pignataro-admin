@@ -1,5 +1,5 @@
 <template>
-  <article class="notification card">
+  <article class="notification">
     <p>
       {{ message }}
     </p>
@@ -36,6 +36,17 @@ export default {
   
   color: var(--clr-main-800);
   background-color: var(--clr-main-200);
+
+
+  box-shadow: var(--shadow-400);
+  
+  border-radius: 25px;
+
+  width: 100%;
+
+  > p {
+    text-align: center;
+  }
 }
 
 

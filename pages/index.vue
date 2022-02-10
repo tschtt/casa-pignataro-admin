@@ -44,6 +44,16 @@
         </nuxt-link>
       </li>
       <li>
+        <nuxt-link to="/xlsx" class="link icon icon-contact-page">
+          <article>
+            <h4>Importar / Exportar</h4>
+            <p>
+              Descargá o cargá un excel con los datos de todos los artículos, secciones y categorias.
+            </p>
+          </article>
+        </nuxt-link>
+      </li>
+      <li>
         <nuxt-link to="/administradores" class="link icon icon-admin-panel-settings">
           <article>
             <h4>Administradores</h4>
