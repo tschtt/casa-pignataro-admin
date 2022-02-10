@@ -7,12 +7,18 @@
       Descargá o cargá un excel con los datos de todos los artículos, secciones y categorias.
     </p>
     <nav class="flex flex-center">
-      <button class="button icon-before" name="file_download" @click="exportar">
+      <button class="button button-exportar icon-before" name="file_download" @click="exportar">
         Exportar
       </button>
-      <button class="button icon-before" name="file_upload" @click="exportar">
-        Importar
-      </button>
+      <div class="button button-importar icon-before" name="file_upload">
+        <label for="InputImport">Importar</label>
+        <input
+          id="InputImport"
+          accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          type="file"
+          @input="importar"
+        >
+      </div>
     </nav>
   </main>
 </template>
@@ -33,7 +39,19 @@ export default {
         const result = await $fetch.get('/xlsx', { type: 'blob' })
         download(result, 'listado.xlsx')   
       } catch {
-        $notification.insert('Se produjo un error al descargar el archivo')
+        $notification.insert({ message: 'Se produjo un error al descargar el archivo.' })
+      }
+    }
+
+    async function importar(event) {
+      try {
+        const body = new FormData()
+        body.append('file', event.target.files[0])
+        $notification.insert({ message: 'Subiendo el archivo...' })
+        await $fetch.post('/xlsx', { body }) 
+        $notification.insert({ message: 'Los datos se guardaron con exito.' })
+      } catch (error) {
+        $notification.insert({ message: 'Se produjo un error al subir el archivo.' })
       }
     }
 
@@ -42,12 +60,27 @@ export default {
     })
     
     return {
-      exportar
+      exportar,
+      importar,
     }
   },
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+.button-importar {
+  position: relative;
+}
+
+.button-importar > input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer; 
+}
 
 </style>
