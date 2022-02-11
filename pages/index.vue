@@ -44,7 +44,7 @@
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/xlsx" class="link icon icon-contact-page">
+        <nuxt-link to="/importar-exportar" class="link icon icon-contact-page">
           <article>
             <h4>Importar / Exportar</h4>
             <p>

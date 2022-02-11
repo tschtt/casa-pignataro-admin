@@ -37,7 +37,7 @@ export default {
       try {
         $notification.insert({ message: 'Descargando el archivo...' })
         const result = await $fetch.get('/xlsx', { type: 'blob' })
-        download(result, 'listado.xlsx')   
+        download(result, 'listado.xlsx')
       } catch {
         $notification.insert({ message: 'Se produjo un error al descargar el archivo.' })
       }

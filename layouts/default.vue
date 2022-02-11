@@ -43,7 +43,7 @@
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/contacto" @click.native="toggleNav">
+          <nuxt-link to="/importar-exportar" @click.native="toggleNav">
             Importar / Exportar
           </nuxt-link>
         </li>
